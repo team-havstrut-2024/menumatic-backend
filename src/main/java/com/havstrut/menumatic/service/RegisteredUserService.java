@@ -18,6 +18,16 @@ public class RegisteredUserService {
         this.registeredUserRepository = registeredUserRepository;
     }
 
+
+    @Transactional
+    public RegisteredUser getUserByID(int user_id) {
+        Optional<RegisteredUser> studentOptional = registeredUserRepository.findById(user_id);
+        if(studentOptional.isEmpty()) {
+            throw new IllegalStateException("No user with such id");
+        }
+        return studentOptional.get();
+    }
+
     @Transactional
     public void addNewStudent(String email) {
         Optional<RegisteredUser> studentOptional = registeredUserRepository.findByEmail(email);

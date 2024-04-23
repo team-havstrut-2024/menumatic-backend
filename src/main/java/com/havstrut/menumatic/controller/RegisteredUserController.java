@@ -34,6 +34,10 @@ public class RegisteredUserController {
         return registedUserOptional.get();
     }*/
 
+    @GetMapping("/fetchUserWithId/{user_id}")
+    public RegisteredUser fetchUserWithId(@PathVariable int user_id) {
+        return registeredUserService.getUserByID(user_id);
+    }
     @PostMapping("/createUserWithEmail/")
    public void registerNewUser(@RequestBody String email_json) {
         JacksonJsonParser jjp = new JacksonJsonParser();
