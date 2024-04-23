@@ -13,8 +13,7 @@ public class RegisteredUser {
 
     private String email;
 
-    public RegisteredUser(int userId, String email) {
-        this.userId = userId;
+    public RegisteredUser(String email) {
         this.email = email;
     }
 

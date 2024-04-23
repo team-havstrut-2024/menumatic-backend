@@ -1,6 +1,5 @@
 package com.havstrut.menumatic.controller;
 
-import com.havstrut.menumatic.RegisteredUserFromDemo;
 import com.havstrut.menumatic.model.RegisteredUser;
 import com.havstrut.menumatic.repository.RegisteredUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +17,20 @@ public class RegisteredUserController {
 
     private final RegisteredUserRepository registeredUserRepository;
 
-    final RegisteredUserFromDemo registeredUser = new RegisteredUserFromDemo(0, "blablabla2@blablabla.com");
+    final RegisteredUser registeredUser = new RegisteredUser("blablabla2@blablabla.com");
 
     @Autowired
     public RegisteredUserController(RegisteredUserRepository registeredUserRepository) {
         this.registeredUserRepository = registeredUserRepository;
     }
 
-    @GetMapping(path = "getStudent/{user_id}")
+    /*@GetMapping(path = "getStudent/{user_id}")
     public RegisteredUser read(@PathVariable int user_id) {
         Optional<RegisteredUser> registedUserOptional = registeredUserRepository.findRegisteredUserById(user_id);
         if(registedUserOptional.isEmpty()) {
             throw new IllegalStateException("id is not found");
         }
         return registedUserOptional.get();
-    }
+    }*/
 
 }

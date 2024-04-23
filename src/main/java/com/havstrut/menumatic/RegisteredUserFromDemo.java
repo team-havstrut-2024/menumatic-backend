@@ -1,4 +1,4 @@
-package com.havstrut.menumatic;
+/*package com.havstrut.menumatic;
 
 public class RegisteredUserFromDemo {
 
@@ -28,3 +28,4 @@ public class RegisteredUserFromDemo {
     }
 
 }
+*/

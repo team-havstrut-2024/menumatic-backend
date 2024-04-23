@@ -1,4 +1,4 @@
-package com.havstrut.menumatic;
+/*package com.havstrut.menumatic;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,3 +11,4 @@ public interface RegisteredUserRepositoryFromDemo extends JpaRepository<Register
     @Query("SELECT s FROM Student s WHERE s.user_id = ?1")
     Optional<RegisteredUserFromDemo> findRegisteredUserById(int user_id);
 }
+*/
