@@ -13,8 +13,6 @@ public class RegisteredUser {
 
     private String email;
 
-
-
     public RegisteredUser(int userId, String email) {
         this.userId = userId;
         this.email = email;

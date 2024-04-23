@@ -8,8 +8,21 @@ import jdk.jfr.ContentType;
 @Table
 public class ExcludedIngredient {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "mealplan_id") // Specify the column name
-    private int mealplanId;
+    @EmbeddedId
+    private ExcludedIngredientId excludedIngredientId;
+
+    public ExcludedIngredient() {
+    }
+
+    public ExcludedIngredient(ExcludedIngredientId excludedIngredientId) {
+        this.excludedIngredientId = excludedIngredientId;
+    }
+
+    public ExcludedIngredientId getExcludedIngredientId() {
+        return excludedIngredientId;
+    }
+
+    public void setExcludedIngredientId(ExcludedIngredientId excludedIngredientId) {
+        this.excludedIngredientId = excludedIngredientId;
+    }
 }
