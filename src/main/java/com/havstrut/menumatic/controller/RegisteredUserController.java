@@ -1,6 +1,7 @@
 package com.havstrut.menumatic.controller;
 
 import com.havstrut.menumatic.RegisteredUserFromDemo;
+import com.havstrut.menumatic.model.RegisteredUser;
 import com.havstrut.menumatic.repository.RegisteredUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,8 +26,8 @@ public class RegisteredUserController {
     }
 
     @GetMapping(path = "getStudent/{user_id}")
-    public RegisteredUserFromDemo read(@PathVariable int user_id) {
-        Optional<RegisteredUserFromDemo> registedUserOptional = registeredUserRepository.findRegisteredUserById(user_id);
+    public RegisteredUser read(@PathVariable int user_id) {
+        Optional<RegisteredUser> registedUserOptional = registeredUserRepository.findRegisteredUserById(user_id);
         if(registedUserOptional.isEmpty()) {
             throw new IllegalStateException("id is not found");
         }
