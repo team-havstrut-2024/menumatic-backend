@@ -1,12 +1,12 @@
 package com.havstrut.menumatic;
 
-public class RegisteredUser {
+public class RegisteredUserFromDemo {
 
     private Integer userId;
     private String email;
 
 
-    public RegisteredUser(Integer userId, String email) {
+    public RegisteredUserFromDemo(Integer userId, String email) {
         this.userId = userId;
         this.email = email;
     }
