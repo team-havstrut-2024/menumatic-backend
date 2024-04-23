@@ -7,8 +7,15 @@ import jakarta.persistence.*;
 public class RegisteredUser {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id") // Specify the column name
+    @SequenceGenerator(
+            name = "user_sequence",
+            sequenceName = "user_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "user_sequence"
+    )    @Column(name = "user_id") // Specify the column name
     private int userId;
 
     private String email;
