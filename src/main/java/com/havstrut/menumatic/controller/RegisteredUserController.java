@@ -5,8 +5,7 @@ import com.havstrut.menumatic.service.RegisteredUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -17,7 +16,7 @@ public class RegisteredUserController {
 
     private final RegisteredUserService registeredUserService;
 
-    final RegisteredUser registeredUser = new RegisteredUser("blablabla2@blablabla.com");
+    //final RegisteredUser registeredUser = new RegisteredUser("blablabla2@blablabla.com");
 
     public RegisteredUserController(RegisteredUserService registeredUserService) {
         this.registeredUserService = registeredUserService;
@@ -33,8 +32,9 @@ public class RegisteredUserController {
         return registedUserOptional.get();
     }*/
 
-   /*public void registerNewUser(RegisteredUser registeredUser) {
-        registeredUserService.addNewUser(RegisteredUser registeredUser)
-    }*/
+    @PostMapping("/createUserWithEmail/")
+   public void registerNewUser(@RequestBody String email) {
+        registeredUserService.addNewStudent(email);
+    }
 
 }
