@@ -1,12 +1,12 @@
 package com.havstrut.menumatic;
 
-public class User {
+public class RegisteredUser {
 
-    private int userId;
+    private Integer userId;
     private String email;
 
 
-    public User(int userId, String email) {
+    public RegisteredUser(Integer userId, String email) {
         this.userId = userId;
         this.email = email;
     }
@@ -26,4 +26,5 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
 }

@@ -1,5 +1,7 @@
-package com.havstrut.menumatic;
+package com.havstrut.menumatic.controller;
 
+import com.havstrut.menumatic.RegisteredUser;
+import com.havstrut.menumatic.repository.RegisteredUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
