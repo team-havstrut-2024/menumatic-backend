@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.boot.json.JacksonJsonParser;
 
+import java.util.Map;
 import java.util.Optional;
 
 
@@ -33,7 +35,10 @@ public class RegisteredUserController {
     }*/
 
     @PostMapping("/createUserWithEmail/")
-   public void registerNewUser(@RequestBody String email) {
+   public void registerNewUser(@RequestBody String email_json) {
+        JacksonJsonParser jjp = new JacksonJsonParser();
+        Map<String, Object> map = jjp.parseMap(email_json);
+        String email = (String)(map.get("email"));
         registeredUserService.addNewStudent(email);
     }
 
