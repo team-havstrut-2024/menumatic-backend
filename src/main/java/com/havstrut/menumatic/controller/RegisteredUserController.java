@@ -34,24 +34,27 @@ public class RegisteredUserController {
         }
         return registedUserOptional.get();
     }*/
-
-    @GetMapping("/fetchMealplans/")
+/*
+    @GetMapping("/getMealplans/{user_id}")
     public LinkedList<Object> fetchMealplans(@PathVariable String user_id) {
 
     }
+   */
 
 
-    @GetMapping("/fetchUserWithId/{user_id}")
-    public RegisteredUser fetchUserWithId(@PathVariable int user_id) {
+    @GetMapping("/get/{user_id}")
+    public RegisteredUser fetchUserWithId(@PathVariable String user_id) {
         return registeredUserService.getUserByID(user_id);
     }
     // TODO: Change to also accept a UserID string
-    @PostMapping("/createUserWithEmail/")
-   public void registerNewUser(@RequestBody String email_json) {
+    @PostMapping("/create/")
+   public void registerNewUser(@RequestBody String json) {
         JacksonJsonParser jjp = new JacksonJsonParser();
-        Map<String, Object> map = jjp.parseMap(email_json);
+        Map<String, Object> map = jjp.parseMap(json);
+        String uid = (String)(map.get("User-id"));
+        if (uid == null) throw new IllegalArgumentException("User-id not found");
         String email = (String)(map.get("email"));
-        registeredUserService.addNewStudent(email);
+        registeredUserService.addNewStudent(uid, email);
     }
 
 }

@@ -15,5 +15,5 @@ public interface MealplanRepository extends JpaRepository<Mealplan, Integer> {
     Optional<Mealplan> findByMealplanId(int id);
     // Get all mealplans associated with userid
     @Query("SELECT mp FROM Mealplan mp WHERE mp.userId = ?1")
-    List<Mealplan> findByUserId(int id);
+    List<Mealplan> findByUserId(String id);
 }
