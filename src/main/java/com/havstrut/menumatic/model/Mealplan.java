@@ -27,10 +27,10 @@ public class Mealplan {
     private String nameOfMealplan;
 
     @Column(name = "user_id")
-    private int userId;
+    private String userId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", insertable=false, updatable=false)
     private RegisteredUser registeredUser;
 
     @ManyToMany
@@ -47,18 +47,17 @@ public class Mealplan {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private List<ExcludedIngredient> excludedIngredientList = new ArrayList<ExcludedIngredient>();
 
+    public Mealplan() {
+    }
 
-
-
-    /*
-    public Mealplan(int mealplanId, Timestamp timeOfMealplan, String nameOfMealplan, int userId) {
+    public Mealplan(int mealplanId, Timestamp timeOfMealplan, String nameOfMealplan, String userId, RegisteredUser registeredUser, List<Recipe> recipeList, List<ExcludedIngredient> excludedIngredientList) {
         this.mealplanId = mealplanId;
         this.timeOfMealplan = timeOfMealplan;
         this.nameOfMealplan = nameOfMealplan;
         this.userId = userId;
-    }
-
-    public Mealplan() {
+        this.registeredUser = registeredUser;
+        this.recipeList = recipeList;
+        this.excludedIngredientList = excludedIngredientList;
     }
 
     public int getMealplanId() {
@@ -85,12 +84,35 @@ public class Mealplan {
         this.nameOfMealplan = nameOfMealplan;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
-    */
+
+    public RegisteredUser getRegisteredUser() {
+        return registeredUser;
+    }
+
+    public void setRegisteredUser(RegisteredUser registeredUser) {
+        this.registeredUser = registeredUser;
+    }
+
+    public List<Recipe> getRecipeList() {
+        return recipeList;
+    }
+
+    public void setRecipeList(List<Recipe> recipeList) {
+        this.recipeList = recipeList;
+    }
+
+    public List<ExcludedIngredient> getExcludedIngredientList() {
+        return excludedIngredientList;
+    }
+
+    public void setExcludedIngredientList(List<ExcludedIngredient> excludedIngredientList) {
+        this.excludedIngredientList = excludedIngredientList;
+    }
 }

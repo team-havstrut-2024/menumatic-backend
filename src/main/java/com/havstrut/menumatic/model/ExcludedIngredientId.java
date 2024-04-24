@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class ExcludedIngredientId implements Serializable {
 
     @Column(name = "mealplan_id")
+    //@Column(name = "mealplan_id", insertable=false, updatable=false)
     private int mealplanId;
     @Column(name = "name_of_excluded_ingredient")
     private String nameOfExcludedIngredient;

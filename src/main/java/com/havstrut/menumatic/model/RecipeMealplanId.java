@@ -9,9 +9,9 @@ import java.io.Serializable;
 @Embeddable
 public class RecipeMealplanId implements Serializable{
 
-    @Column(name = "recipe_id")
+    @Column(name = "recipe_id", insertable=false, updatable=false)
     private int recipeId;
-    @Column(name = "mealplan_id")
+    @Column(name = "mealplan_id",insertable=false, updatable=false)
     private int mealplanId;
 
     public RecipeMealplanId() {
@@ -55,3 +55,5 @@ public class RecipeMealplanId implements Serializable{
         return Objects.hash(recipeId, mealplanId);
     }
 }
+
+

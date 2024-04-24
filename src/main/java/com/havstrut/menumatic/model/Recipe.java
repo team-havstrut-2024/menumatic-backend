@@ -24,27 +24,21 @@ public class Recipe {
 
     //private Set<Mealplan> mealplans = new HashSet<>();
 
-    public int getRecipeId() {
-        return recipeId;
-    }
-
-    public void setRecipeId(int recipeId) {
-        this.recipeId = recipeId;
-    }
-
-    public String getNameOfRecipe() {
-        return nameOfRecipe;
-    }
-
-    public void setNameOfRecipe(String nameOfRecipe) {
-        this.nameOfRecipe = nameOfRecipe;
-    }
-
-    public Recipe(int recipeId, String nameOfRecipe) {
-        this.recipeId = recipeId;
-        this.nameOfRecipe = nameOfRecipe;
-    }
 
     public Recipe() {
+    }
+
+    public Recipe(int recipeId, String nameOfRecipe, List<Mealplan> mealplanList) {
+        this.recipeId = recipeId;
+        this.nameOfRecipe = nameOfRecipe;
+        this.mealplanList = mealplanList;
+    }
+
+    public List<Mealplan> getMealplanList() {
+        return mealplanList;
+    }
+
+    public void setMealplanList(List<Mealplan> mealplanList) {
+        this.mealplanList = mealplanList;
     }
 }

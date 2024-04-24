@@ -12,7 +12,7 @@ public class ExcludedIngredient {
     private ExcludedIngredientId excludedIngredientId;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "mealplan_id")
+    @JoinColumn(name = "mealplan_id", insertable=false, updatable=false)
     private Mealplan mealplan;
 
     public ExcludedIngredient() {
