@@ -19,6 +19,7 @@ public class RegisteredUserService {
     }
 
 
+
     @Transactional
     public RegisteredUser getUserByID(int user_id) {
         Optional<RegisteredUser> studentOptional = registeredUserRepository.findById(user_id);
