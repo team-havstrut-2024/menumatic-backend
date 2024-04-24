@@ -2,10 +2,12 @@ package com.havstrut.menumatic.service;
 
 import com.havstrut.menumatic.model.Recipe;
 import com.havstrut.menumatic.model.RecipeMealplan;
+import com.havstrut.menumatic.model.RecipeMealplanId;
 import com.havstrut.menumatic.repository.RecipeMealplanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,5 +27,9 @@ public class RecipeMealplanService {
             throw new NullPointerException("No such recipe exists");
         }
         return recipeMealplanOptional.get();
+    }
+    public void addNewRecipe(RecipeMealplanId id, int portions) {
+        // to do: check for duplicates
+        recipeMealplanRepository.save(new RecipeMealplan( id, portions));
     }
 }

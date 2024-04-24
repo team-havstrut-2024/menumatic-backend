@@ -34,12 +34,12 @@ public class RegisteredUserController {
         }
         return registedUserOptional.get();
     }*/
-/*
-    @GetMapping("/getMealplans/{user_id}")
-    public LinkedList<Object> fetchMealplans(@PathVariable String user_id) {
 
+    @GetMapping("/mealplans/{user_id}")
+    public LinkedList<Object> fetchMealplans(@PathVariable String user_id) {
+        
     }
-   */
+
 
 
     @GetMapping("/get/{user_id}")

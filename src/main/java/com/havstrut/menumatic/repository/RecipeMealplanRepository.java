@@ -12,6 +12,6 @@ import java.util.List;
 public interface RecipeMealplanRepository extends JpaRepository<RecipeMealplan, Integer> {
 
     @Query("SELECT rmp FROM RecipeMealplan rmp WHERE rmp.recipeMealplanId.mealplanId = ?1")
-    List<Recipe> findByMealplanId(int id);
+    List<RecipeMealplan> findByMealplanId(int id);
 
 }

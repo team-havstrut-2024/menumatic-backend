@@ -21,9 +21,9 @@ public class Mealplan {
     private String nameOfMealplan;
 
     @Column(name = "user_id")
-    private int userId;
+    private String userId;
 
-    public Mealplan(int mealplanId, Timestamp timeOfMealplan, String nameOfMealplan, int userId) {
+    public Mealplan(int mealplanId, Timestamp timeOfMealplan, String nameOfMealplan, String userId) {
         this.mealplanId = mealplanId;
         this.timeOfMealplan = timeOfMealplan;
         this.nameOfMealplan = nameOfMealplan;
@@ -57,11 +57,11 @@ public class Mealplan {
         this.nameOfMealplan = nameOfMealplan;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }
