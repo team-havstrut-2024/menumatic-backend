@@ -1,6 +1,7 @@
 package com.havstrut.menumatic.controller;
 
 import com.havstrut.menumatic.model.RegisteredUser;
+import com.havstrut.menumatic.request.CreateUserRequest;
 import com.havstrut.menumatic.service.RegisteredUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.GetMapping;
@@ -35,14 +36,14 @@ public class RegisteredUserController {
         return registedUserOptional.get();
     }*/
 
-    @GetMapping("/mealplans/{user_id}")
+    /*@GetMapping("/mealplans/{user_id}")
     public LinkedList<Object> fetchMealplans(@PathVariable String user_id) {
         
-    }
+    }*/
 
 
 
-    @GetMapping("/get/{user_id}")
+    /*@GetMapping("/get/{user_id}")
     public RegisteredUser fetchUserWithId(@PathVariable String user_id) {
         return registeredUserService.getUserByID(user_id);
     }
@@ -56,5 +57,17 @@ public class RegisteredUserController {
         String email = (String)(map.get("email"));
         registeredUserService.addNewStudent(uid, email);
     }
+*/
+    @PostMapping("/create/")
+    public void createNewUser(@RequestHeader String json) {
+        
+        registeredUserService.createNewUser(json);
+    }
+
+    @PostMapping("/create/")
+    public void CreateTestUser(@RequestBody CreateUserRequest createUserRequest) {
+        System.out.println("createUserRequest " + createUserRequest);
+    }
+
 
 }

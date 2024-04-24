@@ -26,6 +26,9 @@ public class RecipeMealplan {
         this.portions = portions;
     }
 
+    public RecipeMealplan(Object val) {
+    }
+
     public RecipeMealplanId getRecipeMealplanId() {
         return recipeMealplanId;
     }

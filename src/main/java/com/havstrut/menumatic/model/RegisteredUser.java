@@ -16,8 +16,13 @@ public class RegisteredUser {
         this.userId = id; this.email = email;
     }
 
+
+
     public RegisteredUser() {
 
+    }
+
+    public RegisteredUser(Object val) {
     }
 
     public String getUserId() {

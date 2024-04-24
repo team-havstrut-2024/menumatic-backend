@@ -33,6 +33,9 @@ public class Mealplan {
     public Mealplan() {
     }
 
+    public Mealplan(Object val) {
+    }
+
     public int getMealplanId() {
         return mealplanId;
     }
