@@ -63,10 +63,11 @@ public class RegisteredUserController {
         registeredUserService.createNewUser(json);
     }*/
 
+    @CrossOrigin
     @PostMapping("/create/")
-    public void CreateTestUser(@RequestHeader("User-id") String uid, @RequestBody CreateUserRequest createUserRequest) {
+    public void CreateTestUser(@RequestHeader("User-id") String uid, @RequestBody String createUserRequest) {
         System.out.println(uid);
-        System.out.println((createUserRequest.toString()));
+        System.out.println(createUserRequest);
     }
 
 
