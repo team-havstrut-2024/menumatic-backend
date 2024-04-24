@@ -13,7 +13,7 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/api") //byta till "/registeredUsers" ?
+@RequestMapping("/api/user/") //byta till "/registeredUsers" ?
 public class RegisteredUserController {
 
     private final RegisteredUserService registeredUserService;
@@ -38,6 +38,7 @@ public class RegisteredUserController {
     public RegisteredUser fetchUserWithId(@PathVariable String user_id) {
         return registeredUserService.getUserByID(user_id);
     }
+    // TODO: Change to also accept a UserID string
     @PostMapping("/createUserWithEmail/")
    public void registerNewUser(@RequestBody String email_json) {
         JacksonJsonParser jjp = new JacksonJsonParser();

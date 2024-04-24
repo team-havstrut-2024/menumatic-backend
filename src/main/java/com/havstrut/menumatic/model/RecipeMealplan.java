@@ -16,15 +16,14 @@ public class RecipeMealplan {
 
     @Column(name = "portions")
     private int portions;
-
-
-
-
+  
     public RecipeMealplan() {
     }
 
-    public RecipeMealplan(RecipeMealplanId recipeMealplanId) {
+    public RecipeMealplan(RecipeMealplanId recipeMealplanId, int portions)
+    {
         this.recipeMealplanId = recipeMealplanId;
+        this.portions = portions;
     }
 
     public RecipeMealplanId getRecipeMealplanId() {
@@ -35,6 +34,11 @@ public class RecipeMealplan {
         this.recipeMealplanId = recipeMealplanId;
     }
 
+    public int getPortions() {
+        return portions;
+    }
 
-
+    public void setPortions(int portions) {
+        this.portions = portions;
+    }
 }
