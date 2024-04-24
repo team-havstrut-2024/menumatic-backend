@@ -14,6 +14,12 @@ public class RecipeMealplan {
     @EmbeddedId
     private RecipeMealplanId recipeMealplanId;
 
+    @Column(name = "portions")
+    private int portions;
+
+
+
+
     public RecipeMealplan() {
     }
 

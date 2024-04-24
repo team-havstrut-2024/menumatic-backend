@@ -2,6 +2,11 @@ package com.havstrut.menumatic.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @Entity
 @Table
 public class Recipe {
@@ -13,6 +18,11 @@ public class Recipe {
 
     @Column(name = "name_of_recipe")
     private String nameOfRecipe;
+
+    @ManyToMany(mappedBy = "recipeList")
+    private List<Mealplan> mealplanList = new ArrayList<Mealplan>();
+
+    //private Set<Mealplan> mealplans = new HashSet<>();
 
     public int getRecipeId() {
         return recipeId;
