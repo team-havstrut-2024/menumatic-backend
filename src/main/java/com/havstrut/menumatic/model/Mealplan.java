@@ -23,8 +23,7 @@ public class Mealplan {
     @Column(name = "user_id")
     private String userId;
 
-    public Mealplan(int mealplanId, Timestamp timeOfMealplan, String nameOfMealplan, String userId) {
-        this.mealplanId = mealplanId;
+    public Mealplan(Timestamp timeOfMealplan, String nameOfMealplan, String userId) {
         this.timeOfMealplan = timeOfMealplan;
         this.nameOfMealplan = nameOfMealplan;
         this.userId = userId;

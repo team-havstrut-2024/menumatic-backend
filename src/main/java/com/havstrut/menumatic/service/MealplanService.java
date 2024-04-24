@@ -23,8 +23,9 @@ public class MealplanService {
     public List<Mealplan> getMealplanByUserId(String user_id) {
         return mealplanRepository.findByUserId(user_id);
     }
-    public void addNewMealplan(int mealplanId, Timestamp timeOfMealplan, String nameOfMealplan, String userId) {
+    public int addNewMealplan(Timestamp timeOfMealplan, String nameOfMealplan, String userId) {
         // to do: check for duplicates
-        mealplanRepository.save(new Mealplan(mealplanId, timeOfMealplan, nameOfMealplan, userId));
+        Mealplan mp = mealplanRepository.save(new Mealplan(timeOfMealplan, nameOfMealplan, userId));
+       return mp.getMealplanId();
     }
 }
