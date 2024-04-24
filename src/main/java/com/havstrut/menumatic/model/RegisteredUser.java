@@ -7,16 +7,7 @@ import jakarta.persistence.*;
 public class RegisteredUser {
 
     @Id
-    @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
-    )    @Column(name = "user_id") // Specify the column name
-    private int userId;
+    private String userId;
 
     private String email;
 
@@ -28,11 +19,11 @@ public class RegisteredUser {
 
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
