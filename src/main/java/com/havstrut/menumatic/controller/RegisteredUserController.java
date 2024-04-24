@@ -42,7 +42,7 @@ public class RegisteredUserController {
 
 
     @GetMapping("/fetchUserWithId/{user_id}")
-    public RegisteredUser fetchUserWithId(@PathVariable int user_id) {
+    public RegisteredUser fetchUserWithId(@PathVariable String user_id) {
         return registeredUserService.getUserByID(user_id);
     }
     // TODO: Change to also accept a UserID string

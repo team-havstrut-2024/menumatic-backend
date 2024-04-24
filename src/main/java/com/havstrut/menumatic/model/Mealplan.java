@@ -2,8 +2,14 @@ package com.havstrut.menumatic.model;
 
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table
@@ -23,6 +29,28 @@ public class Mealplan {
     @Column(name = "user_id")
     private int userId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private RegisteredUser registeredUser;
+
+    @ManyToMany
+    @JoinTable(
+            name = "recipe_mealplan", // Name of the bridge table
+            joinColumns = @JoinColumn(name = "mealplan_id"), // Column in the bridge table that references Mealplan
+            inverseJoinColumns = @JoinColumn(name = "recipe_id") // Column in the bridge table that references Recipe
+    )
+    private List<Recipe> recipeList = new ArrayList<Recipe>();
+    //private Set<Recipe> recipes = new HashSet<>();
+
+
+    @OneToMany(mappedBy = "mealplan")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<ExcludedIngredient> excludedIngredientList = new ArrayList<ExcludedIngredient>();
+
+
+
+
+    /*
     public Mealplan(int mealplanId, Timestamp timeOfMealplan, String nameOfMealplan, int userId) {
         this.mealplanId = mealplanId;
         this.timeOfMealplan = timeOfMealplan;
@@ -64,4 +92,5 @@ public class Mealplan {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+    */
 }

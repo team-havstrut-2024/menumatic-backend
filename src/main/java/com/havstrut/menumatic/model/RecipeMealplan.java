@@ -16,7 +16,7 @@ public class RecipeMealplan {
 
     @Column(name = "portions")
     private int portions;
-
+  
     public RecipeMealplan() {
     }
 

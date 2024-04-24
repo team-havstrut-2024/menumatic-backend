@@ -11,6 +11,10 @@ public class ExcludedIngredient {
     @EmbeddedId
     private ExcludedIngredientId excludedIngredientId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "mealplan_id")
+    private Mealplan mealplan;
+
     public ExcludedIngredient() {
     }
 

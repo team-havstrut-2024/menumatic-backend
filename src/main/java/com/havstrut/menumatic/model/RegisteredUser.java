@@ -1,24 +1,33 @@
 package com.havstrut.menumatic.model;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity //For hibernate
 @Table  //For table in our database
 public class RegisteredUser {
 
+
     @Id
-    @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
-    )    @Column(name = "user_id") // Specify the column name
-    private int userId;
+    private String userId;
 
     private String email;
+
+    @OneToMany(mappedBy = "registeredUser")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<FoodPreference> foodPreferenceList = new ArrayList<FoodPreference>();
+    //private Set<FoodPreference> foodPreferences = new HashSet<>();
+
+    @OneToMany(mappedBy = "registeredUser")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private List<Mealplan> mealplanList = new ArrayList<Mealplan>();
+
+
 
     public RegisteredUser(String email) {
         this.email = email;
@@ -28,11 +37,11 @@ public class RegisteredUser {
 
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

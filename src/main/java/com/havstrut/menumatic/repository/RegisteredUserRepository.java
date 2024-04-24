@@ -16,5 +16,5 @@ public interface RegisteredUserRepository extends JpaRepository<RegisteredUser, 
     Optional<RegisteredUser> findByEmail(String email);
 
     @Query("SELECT u FROM RegisteredUser u WHERE u.userId = ?1")
-    Optional<RegisteredUser> findById(int userId);
+    Optional<RegisteredUser> findById(String userId);
 }

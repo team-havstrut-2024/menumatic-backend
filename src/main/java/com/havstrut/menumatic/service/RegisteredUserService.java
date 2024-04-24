@@ -21,7 +21,7 @@ public class RegisteredUserService {
 
 
     @Transactional
-    public RegisteredUser getUserByID(int user_id) {
+    public RegisteredUser getUserByID(String user_id) {
         Optional<RegisteredUser> studentOptional = registeredUserRepository.findById(user_id);
         if(studentOptional.isEmpty()) {
             throw new IllegalStateException("No user with such id");
