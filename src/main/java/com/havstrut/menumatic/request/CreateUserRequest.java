@@ -8,15 +8,24 @@ public class CreateUserRequest {
     private String planName;
     private List<Recipe> recipes;
 
-        // Constructor, getters, and setters
+    // Constructor, getters, and setters
 
-    public class Recipe {
+    public static class Recipe {
         private String name;
         private int portion;
         private long id;
 
         // Constructor, getters, and setters
 
+
+        public Recipe(String name, int portion, long id) {
+            this.name = name;
+            this.portion = portion;
+            this.id = id;
+        }
+
+        public Recipe() {
+        }
 
         public String getName() {
             return name;
@@ -41,13 +50,14 @@ public class CreateUserRequest {
         public void setId(long id) {
             this.id = id;
         }
-    }
 
-    @Override
-    public String toString() {
-        return "CreateUserRequest{" +
-                "planName='" + planName + '\'' +
-                ", recipes=" + recipes +
-                '}';
+        @Override
+        public String toString() {
+            return "Recipe{" +
+                    "name='" + name + '\'' +
+                    ", portion=" + portion +
+                    ", id=" + id +
+                    '}';
+        }
     }
 }

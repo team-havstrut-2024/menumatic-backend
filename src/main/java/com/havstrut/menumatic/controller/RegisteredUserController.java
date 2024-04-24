@@ -58,16 +58,17 @@ public class RegisteredUserController {
         registeredUserService.addNewStudent(uid, email);
     }
 */
-    @PostMapping("/create/")
+    /*@PostMapping("/create/")
     public void createNewUser(@RequestHeader String json) {
-        
         registeredUserService.createNewUser(json);
-    }
+    }*/
 
     @PostMapping("/create/")
-    public void CreateTestUser(@RequestBody CreateUserRequest createUserRequest) {
-        System.out.println("createUserRequest " + createUserRequest);
+    public void CreateTestUser(@RequestHeader("User-id") String uid, @RequestBody CreateUserRequest createUserRequest) {
+        System.out.println(uid);
+        System.out.println((createUserRequest.toString()));
     }
+
 
 
 }
