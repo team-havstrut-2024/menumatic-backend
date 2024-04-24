@@ -10,6 +10,7 @@ import org.springframework.boot.json.JacksonJsonParser;
 
 import java.util.Map;
 import java.util.Optional;
+import java.util.LinkedList;
 
 
 @RestController
@@ -33,6 +34,12 @@ public class RegisteredUserController {
         }
         return registedUserOptional.get();
     }*/
+
+    @GetMapping("/fetchMealplans/")
+    public LinkedList<Object> fetchMealplans(@PathVariable String user_id) {
+
+    }
+
 
     @GetMapping("/fetchUserWithId/{user_id}")
     public RegisteredUser fetchUserWithId(@PathVariable int user_id) {
