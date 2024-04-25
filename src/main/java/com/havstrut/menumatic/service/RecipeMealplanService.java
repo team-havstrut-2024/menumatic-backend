@@ -28,8 +28,8 @@ public class RecipeMealplanService {
         }
         return recipeMealplanOptional.get();
     }
-    public void addNewRecipe(RecipeMealplanId id, int portions) {
+    public void addNewRecipe(RecipeMealplanId id) {
         // to do: check for duplicates
-        recipeMealplanRepository.save(new RecipeMealplan( id, portions));
+        recipeMealplanRepository.save(new RecipeMealplan(id));
     }
 }

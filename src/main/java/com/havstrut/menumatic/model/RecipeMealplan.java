@@ -14,16 +14,13 @@ public class RecipeMealplan {
     @EmbeddedId
     private RecipeMealplanId recipeMealplanId;
 
-    @Column(name = "portions")
-    private int portions;
 
     public RecipeMealplan() {
     }
 
-    public RecipeMealplan(RecipeMealplanId recipeMealplanId, int portions)
+    public RecipeMealplan(RecipeMealplanId recipeMealplanId)
     {
         this.recipeMealplanId = recipeMealplanId;
-        this.portions = portions;
     }
 
     public RecipeMealplan(Object val) {
@@ -37,11 +34,4 @@ public class RecipeMealplan {
         this.recipeMealplanId = recipeMealplanId;
     }
 
-    public int getPortions() {
-        return portions;
-    }
-
-    public void setPortions(int portions) {
-        this.portions = portions;
-    }
 }

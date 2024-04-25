@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.boot.json.JacksonJsonParser;
 
 import java.lang.reflect.Array;
+import java.sql.SQLOutput;
 import java.util.*;
 
 
@@ -80,13 +81,41 @@ public class RegisteredUserController {
 
         jsonMap = objectMapper.readValue(json, HashMap.class);
 
-        System.out.println((jsonMap));
+        System.out.println(("This is the json object: " + jsonMap));
 
         String planName = (String) jsonMap.get("planName");
-        System.out.println((planName));
+        System.out.println(("This is the plan name of the week: " + planName));
 
-        List<Map<String, String>> recipes = (List<Map<String, String>>) jsonMap.get("recipes");
-        System.out.println(recipes);
+        List<Map<String, Object>> recipes = (List<Map<String, Object>>) jsonMap.get("recipes");
+        System.out.println("This is the recipes object: " + recipes);
+
+        String rName = (String) recipes.get(0).get("name");
+        //System.out.println(recipes.get(0));
+        System.out.println(rName);
+
+
+        int rPortion = (int) recipes.get(0).get("portion");
+        System.out.println(("This is the portion: " + rPortion));
+
+        int rId = (int) recipes.get(0).get("id");
+        System.out.println(("This is the id of the recipe: " + rId));
+
+        registeredUserService.addNewStudent(newUid, planName, rName, rPortion, rId);
+
+
+
+
+
+        /*int rPortion = recipes.get(Integer.parseInt("portion"));
+        System.out.println(rPortion);
+        String rPortion = (String) recipes.get(0).get("portion");
+        String rId = (String) recipes.get(0).get("id");
+        System.out.println(rName);
+        System.out.println(rPortion);
+        System.out.println(rId);*/
+
+
+
 
 
 

@@ -14,6 +14,18 @@ public class Recipe {
     @Column(name = "name_of_recipe")
     private String nameOfRecipe;
 
+    @Column(name = "portions")
+    private int portions;
+
+    public Recipe() {
+    }
+
+    public Recipe(int recipeId, String nameOfRecipe, int portions) {
+        this.recipeId = recipeId;
+        this.nameOfRecipe = nameOfRecipe;
+        this.portions = portions;
+    }
+
     public int getRecipeId() {
         return recipeId;
     }
@@ -30,11 +42,11 @@ public class Recipe {
         this.nameOfRecipe = nameOfRecipe;
     }
 
-    public Recipe(int recipeId, String nameOfRecipe) {
-        this.recipeId = recipeId;
-        this.nameOfRecipe = nameOfRecipe;
+    public int getPortions() {
+        return portions;
     }
 
-    public Recipe() {
+    public void setPortions(int portions) {
+        this.portions = portions;
     }
 }

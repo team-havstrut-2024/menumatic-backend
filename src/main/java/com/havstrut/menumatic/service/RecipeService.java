@@ -28,11 +28,11 @@ public class RecipeService {
         return recipeOptional.get();
     }
     @Transactional
-    public void addNewRecipe(int id, String title) {
+    public void addNewRecipe(int id, String title, int portions) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
         if(recipeOptional.isPresent()) {
             throw new IllegalStateException("Email taken");
         }
-        recipeRepository.save(new Recipe(id, title));
+        recipeRepository.save(new Recipe(id, title, portions));
     }
 }
