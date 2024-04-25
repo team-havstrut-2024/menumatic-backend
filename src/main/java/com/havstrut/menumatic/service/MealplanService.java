@@ -41,10 +41,12 @@ public class MealplanService {
             List<Map<String, Object>> recipes = new ArrayList<Map<String, Object>>();
             for (RecipeMealplan rmp : references) {
                 int recipe_id = rmp.getRecipeMealplanId().getRecipeId();
+                int recipe_portions = rmp.getPortions();
                 String recipe_name = recipeRepository.findById(rmp.getRecipeMealplanId().getRecipeId()).orElseThrow().getNameOfRecipe();
                 Map<String,Object> recipe = new LinkedHashMap<>();
                 recipe.put("id", recipe_id);
                 recipe.put("name", recipe_name);
+                recipe.put("portions", recipe_portions);
                 recipes.add(recipe);
             }
             map.put("recipes", recipes);

@@ -47,7 +47,7 @@ public class RegisteredUserController {
         }
         return registedUserOptional.get();
     }*/
-
+    @CrossOrigin
     @GetMapping("/mealplans/")
     public List<Map<String,Object>> fetchMealplans(@RequestHeader("User-id") String uid) {
         return mealplanService.getMealplansByUserId(uid);
