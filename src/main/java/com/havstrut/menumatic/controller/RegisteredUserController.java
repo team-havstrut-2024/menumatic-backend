@@ -1,5 +1,7 @@
 package com.havstrut.menumatic.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.havstrut.menumatic.model.RegisteredUser;
 import com.havstrut.menumatic.request.CreateUserRequest;
 import com.havstrut.menumatic.service.RegisteredUserService;
@@ -9,9 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.boot.json.JacksonJsonParser;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.LinkedList;
+import java.lang.reflect.Array;
+import java.util.*;
 
 
 @RestController
@@ -19,11 +20,14 @@ import java.util.LinkedList;
 public class RegisteredUserController {
 
     private final RegisteredUserService registeredUserService;
+    private final ObjectMapper objectMapper;
+
 
     //final RegisteredUser registeredUser = new RegisteredUser("blablabla2@blablabla.com");
 
-    public RegisteredUserController(RegisteredUserService registeredUserService) {
+    public RegisteredUserController(RegisteredUserService registeredUserService, ObjectMapper objectMapper) {
         this.registeredUserService = registeredUserService;
+        this.objectMapper = objectMapper;
     }
 
 
@@ -63,11 +67,32 @@ public class RegisteredUserController {
         registeredUserService.createNewUser(json);
     }*/
 
+
     @CrossOrigin
     @PostMapping("/create/")
-    public void CreateTestUser(@RequestHeader("User-id") String uid, @RequestBody String createUserRequest) {
+    public void CreateTestUser(@RequestHeader("User-id") String uid, @RequestBody String json) throws JsonProcessingException {
         System.out.println(uid);
-        System.out.println(createUserRequest);
+        System.out.println(json);
+        //recipes:[{name:Light Greek Lemon Chicken Orzo Soup,portion:1,id:1098350}
+        //Är en array av objects
+        Map<String, Object> userIdMap = new HashMap<>();
+        Map<String, Object> jsonMap = new HashMap<>();
+
+        userIdMap = objectMapper.readValue(uid, HashMap.class);
+        jsonMap = objectMapper.readValue(json, HashMap.class);
+
+        System.out.println("This is the userIdMap: " + userIdMap);
+        System.out.println((jsonMap));
+
+        String planName = (String) jsonMap.get("planName");
+        System.out.println((planName));
+
+        List<Map<String, String>> recipes = (List<Map<String, String>>) jsonMap.get("recipes");
+       System.out.println(recipes);
+
+
+
+
     }
 
 
