@@ -25,4 +25,5 @@ public class ExcludedIngredient {
     public void setExcludedIngredientId(ExcludedIngredientId excludedIngredientId) {
         this.excludedIngredientId = excludedIngredientId;
     }
+
 }

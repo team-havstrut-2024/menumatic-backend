@@ -33,7 +33,7 @@ public class RegisteredUserService {
     public void addNewStudent(String uid, String email) {
         Optional<RegisteredUser> studentOptional = registeredUserRepository.findById(uid);
         if (studentOptional.isEmpty()) {
-        registeredUserRepository.save(new RegisteredUser(uid, uid));
+            registeredUserRepository.save(new RegisteredUser(uid, uid));
         }
     }
 }
