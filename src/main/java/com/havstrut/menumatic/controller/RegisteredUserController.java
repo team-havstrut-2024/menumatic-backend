@@ -106,22 +106,27 @@ public class RegisteredUserController {
 
         List<Map<String, Object>> recipes = (List<Map<String, Object>>) jsonMap.get("recipes");
         System.out.println("This is the recipes object: " + recipes);
-
-        String rName = (String) recipes.get(0).get("name");
-        //System.out.println(recipes.get(0));
-        System.out.println(rName);
-
-
-        int rPortion = (int) recipes.get(0).get("portion");
-        System.out.println(("This is the portion: " + rPortion));
-
-        int rId = (int) recipes.get(0).get("id");
-        System.out.println(("This is the id of the recipe: " + rId));
-
         registeredUserService.addNewStudent(newUid);
-        recipeService.addNewRecipe(rId,  rName,  rPortion);
-        int mealplan_id = mealplanService.addNewMealplan(rName, Timestamp.valueOf(LocalDateTime.now()) ,newUid);
-        recipeMealplanService.addNewRecipeMealplan(rId, mealplan_id);
+        int mealplan_id = mealplanService.addNewMealplan(planName, Timestamp.valueOf(LocalDateTime.now()) ,newUid);
+        for (Map<String, Object> map : recipes) {
+            String rName = (String) map.get("name");
+            //System.out.println(recipes.get(0));
+            System.out.println(rName);
+
+
+            int rPortion = (int) map.get("portion");
+            System.out.println(("This is the portion: " + rPortion));
+
+            int rId = (int) map.get("id");
+            System.out.println(("This is the id of the recipe: " + rId));
+
+
+            recipeService.addNewRecipe(rId,  rName,  rPortion);
+            recipeMealplanService.addNewRecipeMealplan(rId, mealplan_id);
+
+
+        }
+
 
 
 
