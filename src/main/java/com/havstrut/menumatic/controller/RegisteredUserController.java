@@ -2,8 +2,12 @@ package com.havstrut.menumatic.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.havstrut.menumatic.model.RecipeMealplan;
 import com.havstrut.menumatic.model.RegisteredUser;
 import com.havstrut.menumatic.request.CreateUserRequest;
+import com.havstrut.menumatic.service.MealplanService;
+import com.havstrut.menumatic.service.RecipeMealplanService;
+import com.havstrut.menumatic.service.RecipeService;
 import com.havstrut.menumatic.service.RegisteredUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +17,8 @@ import org.springframework.boot.json.JacksonJsonParser;
 
 import java.lang.reflect.Array;
 import java.sql.SQLOutput;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -21,15 +27,27 @@ import java.util.*;
 public class RegisteredUserController {
 
     private final RegisteredUserService registeredUserService;
+
+    private final MealplanService mealplanService;
+    private final RecipeService recipeService;
     private final ObjectMapper objectMapper;
+
+    private final RecipeMealplanService recipeMealplanService;
+
+
 
 
     //final RegisteredUser registeredUser = new RegisteredUser("blablabla2@blablabla.com");
 
-    public RegisteredUserController(RegisteredUserService registeredUserService, ObjectMapper objectMapper) {
+    public RegisteredUserController(RegisteredUserService registeredUserService, MealplanService mealplanService, RecipeService recipeService, ObjectMapper objectMapper, RecipeMealplanService recipeMealplanService) {
         this.registeredUserService = registeredUserService;
+        this.mealplanService = mealplanService;
+        this.recipeService = recipeService;
         this.objectMapper = objectMapper;
+        this.recipeMealplanService = recipeMealplanService;
     }
+
+
 
 
     /*@GetMapping(path = "getStudent/{user_id}")
@@ -71,7 +89,7 @@ public class RegisteredUserController {
 
     @CrossOrigin
     @PostMapping("/create/")
-    public void CreateTestUser(@RequestHeader("User-id") String uid, @RequestBody String json) throws JsonProcessingException {
+    public void CreateTestUser(@RequestHeader("User-id") String uid, @RequestBody String json) throws Exception {
         String newUid = uid.replace('"', ' ').trim();
         System.out.println(newUid);
         System.out.println(json);
@@ -100,7 +118,10 @@ public class RegisteredUserController {
         int rId = (int) recipes.get(0).get("id");
         System.out.println(("This is the id of the recipe: " + rId));
 
-        registeredUserService.addNewStudent(newUid, planName, rName, rPortion, rId);
+        registeredUserService.addNewStudent(newUid);
+        recipeService.addNewRecipe(rId,  rName,  rPortion);
+        int mealplan_id = mealplanService.addNewMealplan(rName, Timestamp.valueOf(LocalDateTime.now()) ,newUid);
+        recipeMealplanService.addNewRecipeMealplan(rId, mealplan_id);
 
 
 

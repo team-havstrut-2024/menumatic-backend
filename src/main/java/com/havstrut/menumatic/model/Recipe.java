@@ -7,7 +7,6 @@ import jakarta.persistence.*;
 public class Recipe {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "recipe_id") // Specify the column name
     private int recipeId;
 

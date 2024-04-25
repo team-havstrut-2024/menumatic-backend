@@ -6,9 +6,10 @@ import com.havstrut.menumatic.repository.*;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JacksonJsonParser;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
-import com.havstrut.menumatic.util.Utility;
+//import com.havstrut.menumatic.util.Utility;
 
 import java.util.Map;
 import java.util.Optional;
@@ -16,12 +17,11 @@ import java.util.Optional;
 @Service
 public class RegisteredUserService {
 
-    private final Utility utility;
+
     private final RegisteredUserRepository registeredUserRepository;
 
     @Autowired
-    public RegisteredUserService(Utility utility, RegisteredUserRepository registeredUserRepository) {
-        this.utility = utility;
+    public RegisteredUserService(RegisteredUserRepository registeredUserRepository) {
         this.registeredUserRepository = registeredUserRepository;
     }
 
@@ -36,9 +36,14 @@ public class RegisteredUserService {
     }
 
     @Transactional
-    public void addNewStudent(String newUid, String planName, String rName, int rPortion, int rId) {
+    public void addNewStudent(String newUid) {
         Optional<RegisteredUser> studentOptional = registeredUserRepository.findById(newUid);
         System.out.println(studentOptional);
+        if(studentOptional.isEmpty()) {
+            registeredUserRepository.save(new RegisteredUser(newUid));
+        }
+        System.out.println(registeredUserRepository.findById(newUid).get().getUserId());
+
         //registeredUserRepository.save(new RegisteredUser(uid));
     }
 
@@ -52,7 +57,7 @@ public class RegisteredUserService {
             System.out.println("Key: " + key + ", Val: " + val);
             //recipeRepository.save(new RegisteredUser(key, (String) val));
             //registeredUserRepository.save(new RegisteredUser(key, (String) val));
-            utility.invokeRepositoryMethod(key, val);
+            //utility.invokeRepositoryMethod(key, val);
 
 
         }

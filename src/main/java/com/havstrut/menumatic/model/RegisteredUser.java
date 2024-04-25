@@ -10,19 +10,12 @@ public class RegisteredUser {
     @Column(name = "user_id") // Specify the column name
     private String userId;
 
-    private String email;
-
-    public RegisteredUser(String id, String email) {
-        this.userId = id; this.email = email;
-    }
-
-
 
     public RegisteredUser() {
-
     }
 
-    public RegisteredUser(Object val) {
+    public RegisteredUser(String userId) {
+        this.userId = userId;
     }
 
     public String getUserId() {
@@ -31,13 +24,5 @@ public class RegisteredUser {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 }

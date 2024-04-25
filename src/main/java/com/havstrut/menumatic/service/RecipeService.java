@@ -30,9 +30,8 @@ public class RecipeService {
     @Transactional
     public void addNewRecipe(int id, String title, int portions) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
-        if(recipeOptional.isPresent()) {
-            throw new IllegalStateException("Email taken");
+        if(recipeOptional.isEmpty()) {
+            recipeRepository.save(new Recipe(id, title, portions));
         }
-        recipeRepository.save(new Recipe(id, title, portions));
     }
 }

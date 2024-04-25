@@ -1,4 +1,4 @@
-package com.havstrut.menumatic.util;
+/*package com.havstrut.menumatic.util;
 
 import com.havstrut.menumatic.model.Mealplan;
 import com.havstrut.menumatic.model.RecipeMealplan;
@@ -42,4 +42,7 @@ public class Utility {
                 break;
         }
     }
+
+
 }
+ */
