@@ -12,6 +12,8 @@ public class RegisteredUser {
 
     private String email;
 
+
+
     public RegisteredUser(String id, String email) {
         this.userId = id; this.email = email;
     }

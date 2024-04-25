@@ -98,7 +98,7 @@ public class RegisteredUserController {
 
 
         // only if both are successfully parsed (no exceptions)
-        registeredUserService.addNewStudent(uid, uid);
+        registeredUserService.addNewStudent(uid,uid);
 
     }
 

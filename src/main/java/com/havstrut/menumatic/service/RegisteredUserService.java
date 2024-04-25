@@ -31,10 +31,9 @@ public class RegisteredUserService {
 
     @Transactional
     public void addNewStudent(String uid, String email) {
-        Optional<RegisteredUser> studentOptional = registeredUserRepository.findByEmail(email);
-        if(studentOptional.isPresent()) {
-            throw new IllegalStateException("Email taken");
+        Optional<RegisteredUser> studentOptional = registeredUserRepository.findById(uid);
+        if (studentOptional.isEmpty()) {
+        registeredUserRepository.save(new RegisteredUser(uid, uid));
         }
-        registeredUserRepository.save(new RegisteredUser(uid, email));
     }
 }
