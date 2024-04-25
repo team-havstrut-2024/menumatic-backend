@@ -90,12 +90,13 @@ public class RegisteredUserController {
     @CrossOrigin
     @GetMapping("mealplans/")
     public List<Map<String,Object>> fetchMealplans(@RequestHeader("User-id") String uid) {
+        System.out.println(uid);
         return mealplanService.getMealplansByUserId(uid);
     }
 
 
     @CrossOrigin
-    @PostMapping("/create/")
+    @PostMapping("create/")
     public void CreateTestUser(@RequestHeader("User-id") String uid, @RequestBody String json) throws Exception {
         String newUid = uid.replace('"', ' ').trim();
         System.out.println(newUid);
