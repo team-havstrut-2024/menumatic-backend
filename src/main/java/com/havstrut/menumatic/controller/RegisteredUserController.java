@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.havstrut.menumatic.model.RecipeMealplan;
 import com.havstrut.menumatic.model.RegisteredUser;
-import com.havstrut.menumatic.request.CreateUserRequest;
+//import com.havstrut.menumatic.request.CreateUserRequest;
 import com.havstrut.menumatic.service.MealplanService;
 import com.havstrut.menumatic.service.RecipeMealplanService;
 import com.havstrut.menumatic.service.RecipeService;

@@ -1,4 +1,4 @@
-package com.havstrut.menumatic.request;
+/*package com.havstrut.menumatic.request;
 
 import java.util.List;
 
@@ -61,3 +61,4 @@ public class CreateUserRequest {
         }
     }
 }
+*/
