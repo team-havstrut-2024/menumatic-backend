@@ -6,6 +6,7 @@ import com.havstrut.menumatic.repository.RecipeMealplanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,12 +20,8 @@ public class RecipeMealplanService {
     }
 
 
-    public RecipeMealplan getRecipeMealplanByMealplanId(int mealplan_id) {
-        Optional<RecipeMealplan> recipeMealplanOptional = recipeMealplanRepository.findById(mealplan_id);
-        if (recipeMealplanOptional.isEmpty()) {
-            throw new NullPointerException("No such recipe exists");
-        }
-        return recipeMealplanOptional.get();
+    public List<RecipeMealplan> getRecipeMealplanByMealplanId(int mealplan_id) {
+        return recipeMealplanRepository.findByMealplanId(mealplan_id);
     }
     public void addNewRecipeMealplan(int mealplan_id, int recipe_id, int portions) {
         // to do: check for duplicates

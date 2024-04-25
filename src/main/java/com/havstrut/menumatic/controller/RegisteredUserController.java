@@ -1,5 +1,6 @@
 package com.havstrut.menumatic.controller;
 
+import com.havstrut.menumatic.model.Mealplan;
 import com.havstrut.menumatic.model.RegisteredUser;
 import com.havstrut.menumatic.service.MealplanService;
 import com.havstrut.menumatic.service.RecipeMealplanService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.boot.json.JacksonJsonParser;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.*;
 
 
@@ -45,20 +47,29 @@ public class RegisteredUserController {
         }
         return registedUserOptional.get();
     }*/
-/*
-    @GetMapping("/mealplans/{user_id}")
-    public LinkedList<Object> fetchMealplans(@PathVariable String user_id) {
 
+    @GetMapping("/mealplans/")
+    public List<Map<String,Object>> fetchMealplans(@RequestHeader("User-id") String uid) {
+        return mealplanService.getMealplansByUserId(uid);
     }
 
 
-*/
+
+
     @GetMapping("/get/{user_id}")
     public RegisteredUser fetchUserWithId(@PathVariable String user_id) {
         return registeredUserService.getUserByID(user_id);
     }
-    // TODO: Change to also accept a UserID string
-    @PostMapping("/create/")
+    // TODO: Refactor to use in Services.
+
+    /*
+    * This code looks pretty nasty. What you need to know is that when JacksonJsonParser is invoked the whole json in converted.
+    * Lists are converted to ArrayList<Object>, and plain values are converted to LinkedHashMap<String, Object>.
+    * Hence, the astronomical amount of type casts.
+    * I was not able to find alot of documentation about JacksonJsonParser online..
+    * */
+    @CrossOrigin
+    @PostMapping("create/")
    public void registerNewUser(@RequestHeader("User-id") String uid, @RequestBody String json) {
         // First, parse header
         JacksonJsonParser jjp = new JacksonJsonParser();
@@ -75,9 +86,8 @@ public class RegisteredUserController {
             String mealplan_name = /*(String)mealplan_map*/(String)((LinkedHashMap<String, Object>)i).get("planName");
 
             List<Object> recipes = (ArrayList<Object>)((LinkedHashMap<String, Object>)i).get("recipes");
-            int saved_id = mealplanService.addNewMealplan(new Timestamp(0),mealplan_name,uid);
+            int saved_id = mealplanService.addNewMealplan(Timestamp.valueOf(LocalDateTime.now()),mealplan_name,uid);
             for (Object j : recipes) {
-
                 int recipe_id = (Integer)((LinkedHashMap<String, Object>)j).get("id");
                 int recipe_portions = (Integer)((LinkedHashMap<String, Object>)j).get("portion");
                 String recipe_name = (String)((LinkedHashMap<String, Object>)j).get("name");
