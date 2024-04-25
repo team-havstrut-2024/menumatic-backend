@@ -86,6 +86,17 @@ public class RegisteredUserController {
         registeredUserService.createNewUser(json);
     }*/
 
+    /**
+     * Gustav FETCH
+     * @param uid
+     * @return
+     */
+    @CrossOrigin
+    @GetMapping("/mealplans/")
+    public List<Map<String,Object>> fetchMealplans(@RequestHeader("User-id") String uid) {
+        return mealplanService.getMealplansByUserId(uid);
+    }
+
 
     @CrossOrigin
     @PostMapping("/create/")
