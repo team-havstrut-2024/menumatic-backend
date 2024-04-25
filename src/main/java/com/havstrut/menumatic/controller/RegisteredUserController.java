@@ -119,22 +119,20 @@ public class RegisteredUserController {
         for (Map<String, Object> map : recipes) {
             String rName = (String) map.get("name");
             //System.out.println(recipes.get(0));
-            System.out.println(rName);
-
-
-            int rPortion = (int) map.get("portion");
-            System.out.println(("This is the portion: " + rPortion));
-
+//            System.out.println(rName);
+            Object rPortion = map.get("portion");
             int rId = (int) map.get("id");
-            System.out.println(("This is the id of the recipe: " + rId));
+//            System.out.println(("This is the id of the recipe: " + rId));
+            if (rPortion.getClass() == String.class)
+            {
+                recipeService.addNewRecipe(rId,  rName, Integer.parseInt((String)rPortion));
+            }
+            else{
+                recipeService.addNewRecipe(rId,  rName, (int) rPortion);
+            }
 
-            recipeService.addNewRecipe(rId,  rName,  rPortion);
             recipeMealplanService.addNewRecipeMealplan(rId, mealplan_id);
         }
-
-
-
-
 
 
         /*int rPortion = recipes.get(Integer.parseInt("portion"));
@@ -144,12 +142,6 @@ public class RegisteredUserController {
         System.out.println(rName);
         System.out.println(rPortion);
         System.out.println(rId);*/
-
-
-
-
-
-
 
     }
 
