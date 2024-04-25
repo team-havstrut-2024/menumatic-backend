@@ -86,16 +86,13 @@ public class RegisteredUserController {
         registeredUserService.createNewUser(json);
     }*/
 
-    /**
-     * Gustav FETCH
-     * @param uid
-     * @return
-     */
+    /*
+     Gustav FETCH
     @CrossOrigin
     @GetMapping("/mealplans/")
     public List<Map<String,Object>> fetchMealplans(@RequestHeader("User-id") String uid) {
         return mealplanService.getMealplansByUserId(uid);
-    }
+    }*/
 
 
     @CrossOrigin
@@ -131,11 +128,8 @@ public class RegisteredUserController {
             int rId = (int) map.get("id");
             System.out.println(("This is the id of the recipe: " + rId));
 
-
             recipeService.addNewRecipe(rId,  rName,  rPortion);
             recipeMealplanService.addNewRecipeMealplan(rId, mealplan_id);
-
-
         }
 
 
