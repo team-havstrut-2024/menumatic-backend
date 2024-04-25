@@ -5,22 +5,59 @@ import com.havstrut.menumatic.model.Recipe;
 import com.havstrut.menumatic.model.RecipeMealplan;
 import com.havstrut.menumatic.model.RecipeMealplanId;
 import com.havstrut.menumatic.repository.MealplanRepository;
+import com.havstrut.menumatic.repository.RecipeMealplanRepository;
+import com.havstrut.menumatic.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class MealplanService {
 
     private final MealplanRepository mealplanRepository;
+    private final RecipeRepository recipeRepository;
+    private final RecipeMealplanRepository recipeMealplanRepository;
 
     @Autowired
-    public MealplanService(MealplanRepository mealplanRepository) {
+    public MealplanService(MealplanRepository mealplanRepository, RecipeRepository recipeRepository, RecipeMealplanRepository recipeMealplanRepository) {
         this.mealplanRepository = mealplanRepository;
+        this.recipeRepository = recipeRepository;
+        this.recipeMealplanRepository = recipeMealplanRepository;
+    }
+
+    public List<Map<String, Object>> getMealplansByUserId(String uid){
+        List<Mealplan> mealplans = mealplanRepository.findByUserId(uid);
+        // id
+        // name
+        // recipes
+        // id
+        // recipes
+        ArrayList<Map<String, Object>> maps = new ArrayList<Map<String, Object>>();
+        for (Mealplan mp : mealplans) {
+            Map<String, Object> map = new LinkedHashMap<String, Object>();
+            map.put("id", mp.getMealplanId());
+            map.put("name", mp.getNameOfMealplan());
+            List<RecipeMealplan> references = recipeMealplanRepository.findByMealplanId(mp.getMealplanId());
+            List<Map<String, Object>> recipes = new ArrayList<Map<String, Object>>();
+            for (RecipeMealplan rmp : references) {
+                int recipe_id = rmp.getRecipeMealplanId().getRecipeId();
+                Recipe recipe = recipeRepository.findById(rmp.getRecipeMealplanId().getRecipeId()).orElseThrow();
+                String recipe_name = recipe.getNameOfRecipe();
+
+                int recipe_portions = recipe.getPortions();
+                Map<String,Object> recipe_json = new LinkedHashMap<>();
+                recipe_json.put("id", recipe_id);
+                recipe_json.put("name", recipe_name);
+                recipe_json.put("portions", recipe_portions);
+                recipes.add(recipe_json);
+            }
+            map.put("recipes", recipes);
+            maps.add(map);
+        }
+        return maps;
     }
 
     public List<Mealplan> getMealplanByUserId(String user_id) {
