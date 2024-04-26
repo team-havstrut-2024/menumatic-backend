@@ -13,4 +13,8 @@ public class RecipeMealplanController {
     public RecipeMealplanController(RecipeMealplanService recipeMealplanService) {
         this.recipeMealplanService = recipeMealplanService;
     }
+
+    /**
+     * Vi måste se till att POST kan tas emot här.
+     */
 }
