@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.json.JacksonJsonParser;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+
 
 //import com.havstrut.menumatic.util.Utility;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
@@ -24,6 +28,8 @@ public class RegisteredUserService {
     public RegisteredUserService(RegisteredUserRepository registeredUserRepository) {
         this.registeredUserRepository = registeredUserRepository;
     }
+
+
 
 
     @Transactional
@@ -52,6 +58,16 @@ public class RegisteredUserService {
         String newUid = uid.replace('"', ' ').trim();
         System.out.println(newUid);
         System.out.println(json);
+
+        Map<String, Object> jsonMap = new HashMap<>();
+
+        jsonMap = objectMapper.readValue(json, HashMap.class);
+
+        System.out.println(("This is the json object: " + jsonMap));
+
+        String planName = (String) jsonMap.get("planName");
+        System.out.println(("This is the plan name of the week: " + planName));
+
 
         JacksonJsonParser jjp = new JacksonJsonParser();
         Map<String, Object> map = jjp.parseMap(json);
