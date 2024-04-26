@@ -24,9 +24,13 @@ public class RegisteredUserService {
 
     private final RegisteredUserRepository registeredUserRepository;
 
+    private final ObjectMapper objectMapper;
+
+
     @Autowired
-    public RegisteredUserService(RegisteredUserRepository registeredUserRepository) {
+    public RegisteredUserService(RegisteredUserRepository registeredUserRepository, ObjectMapper objectMapper) {
         this.registeredUserRepository = registeredUserRepository;
+        this.objectMapper = objectMapper;
     }
 
 
@@ -54,8 +58,13 @@ public class RegisteredUserService {
     }
 
     @Transactional
-    public void createNewUser(String uid, String json) {
-        String newUid = uid.replace('"', ' ').trim();
+    public void createNewUser(String newUid, String json) {
+        /**
+         * Refactored from the controller layer.
+         * Just nu så har controller layer för mycket logic, problemet är att om jag skickar
+         * till service layer i nuläget så kommer service layer fortfarande inte vara enkapsulerad.
+         * GOAL: Se till att det finns olika metoder i dem olika service klasserna för varje operation.
+         */
         System.out.println(newUid);
         System.out.println(json);
 
@@ -68,7 +77,9 @@ public class RegisteredUserService {
         String planName = (String) jsonMap.get("planName");
         System.out.println(("This is the plan name of the week: " + planName));
 
-
+        /**
+         * Original logic in the service layer.
+         */
         JacksonJsonParser jjp = new JacksonJsonParser();
         Map<String, Object> map = jjp.parseMap(json);
         for (Map.Entry<String, Object> entry : map.entrySet()) {

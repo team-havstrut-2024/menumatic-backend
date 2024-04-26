@@ -98,23 +98,17 @@ public class RegisteredUserController {
     @CrossOrigin
     @PostMapping("create/")
     public void CreateTestUser(@RequestHeader("User-id") String uid, @RequestBody String json) throws Exception {
+        //Trimmar innan vi skickar till service layer.
         String newUid = uid.replace('"', ' ').trim();
-        System.out.println(newUid);
-        System.out.println(json);
+        registeredUserService.addNewStudent(newUid);
+        registeredUserService.createNewUser(newUid, json);
+
+
         //recipes:[{name:Light Greek Lemon Chicken Orzo Soup,portion:1,id:1098350}
         //Är en array av objects
-        Map<String, Object> jsonMap = new HashMap<>();
-
-        jsonMap = objectMapper.readValue(json, HashMap.class);
-
-        System.out.println(("This is the json object: " + jsonMap));
-
-        String planName = (String) jsonMap.get("planName");
-        System.out.println(("This is the plan name of the week: " + planName));
 
         List<Map<String, Object>> recipes = (List<Map<String, Object>>) jsonMap.get("recipes");
         System.out.println("This is the recipes object: " + recipes);
-        registeredUserService.addNewStudent(newUid);
         int mealplan_id = mealplanService.addNewMealplan(planName, Timestamp.valueOf(LocalDateTime.now()) ,newUid);
         for (Map<String, Object> map : recipes) {
             String rName = (String) map.get("name");

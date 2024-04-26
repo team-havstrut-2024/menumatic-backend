@@ -21,6 +21,10 @@ public class RecipeMealplanService {
     }
 
 
+    /**
+     *
+     * Från POST-operation, vi vill att RecipeMealplanController ska anropa på denna istället.
+     */
     public RecipeMealplan getRecipeMealplanByMealplanId(int mealplan_id) {
         Optional<RecipeMealplan> recipeMealplanOptional = recipeMealplanRepository.findById(mealplan_id);
         if (recipeMealplanOptional.isEmpty()) {
