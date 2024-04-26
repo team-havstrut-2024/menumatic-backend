@@ -48,7 +48,11 @@ public class RegisteredUserService {
     }
 
     @Transactional
-    public void createNewUser(String json) {
+    public void createNewUser(String uid, String json) {
+        String newUid = uid.replace('"', ' ').trim();
+        System.out.println(newUid);
+        System.out.println(json);
+
         JacksonJsonParser jjp = new JacksonJsonParser();
         Map<String, Object> map = jjp.parseMap(json);
         for (Map.Entry<String, Object> entry : map.entrySet()) {
