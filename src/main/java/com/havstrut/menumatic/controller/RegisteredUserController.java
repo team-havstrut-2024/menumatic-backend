@@ -39,7 +39,7 @@ public class RegisteredUserController {
 
     //final RegisteredUser registeredUser = new RegisteredUser("blablabla2@blablabla.com");
 
-    public RegisteredUserController(RegisteredUserService registeredUserService, MealplanService mealplanService, RecipeService recipeService, ObjectMapper objectMapper, RecipeMealplanService recipeMealplanService) {
+    public RegisteredUserController(RegisteredUserService registeredUserService, MealplanService mealplanService, RecipeService recipeService, ObjectMapper objectMapper, RecipeMealplanService recipeMealplanService ) {
         this.registeredUserService = registeredUserService;
         this.mealplanService = mealplanService;
         this.recipeService = recipeService;
@@ -92,6 +92,12 @@ public class RegisteredUserController {
     public List<Map<String,Object>> fetchMealplans(@RequestHeader("User-id") String uid) {
         System.out.println(uid);
         return mealplanService.getMealplansByUserId(uid);
+    }
+
+    @CrossOrigin
+    @DeleteMapping("delete/")
+    public void deleteUser(@RequestHeader("User-id") String uid) {
+        registeredUserService.deleteUser(uid);
     }
 
 
