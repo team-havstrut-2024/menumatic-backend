@@ -94,6 +94,12 @@ public class RegisteredUserController {
         return mealplanService.getMealplansByUserId(uid);
     }
 
+    @CrossOrigin
+    @DeleteMapping("delete/")
+    public void deleteUser(@RequestHeader("User-id") String uid) {
+        registeredUserService.deleteUser(uid);
+    }
+
 
     @CrossOrigin
     @PostMapping("create/")

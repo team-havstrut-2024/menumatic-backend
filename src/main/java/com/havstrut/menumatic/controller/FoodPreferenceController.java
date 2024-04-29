@@ -17,11 +17,21 @@ public class FoodPreferenceController {
         this.foodPreferenceService = foodPreferenceService;
     }
 
+    /*
+    * Get a list of user preferences in a json array
+    * */
     @CrossOrigin
     @GetMapping("get/")
     public List<String> getUserPreference(@RequestHeader("User-id") String uid) {
         return foodPreferenceService.getAllFoodPreferencesForUser(uid);
     }
+
+
+    /*
+    *  Set user preference
+    *  Will write over current preferences with the new list
+    * */
+
     @CrossOrigin
     @PostMapping("set/")
     public void setUserPreference(@RequestHeader("User-id") String uid, @RequestBody List<String> parameters) {

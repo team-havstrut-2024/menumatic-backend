@@ -58,8 +58,13 @@ public class RegisteredUserService {
             //recipeRepository.save(new RegisteredUser(key, (String) val));
             //registeredUserRepository.save(new RegisteredUser(key, (String) val));
             //utility.invokeRepositoryMethod(key, val);
-
-
         }
     }
+    public void deleteUser(String uid) {
+        Optional<RegisteredUser> userOptional = registeredUserRepository.findById(uid);
+        if(userOptional.isPresent()) {
+            registeredUserRepository.delete(new RegisteredUser(userOptional.get().getUserId()));
+        }
+    }
+
 }
