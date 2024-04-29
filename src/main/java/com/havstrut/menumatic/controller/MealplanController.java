@@ -8,9 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/mealplan/")
@@ -43,29 +41,16 @@ public class MealplanController {
 
         String mealplanId = (String) jsonMap.get("mealplanId");
 
+        /**
+         * Debugging printout.
+         */
+        int mealplanIdInt = Integer.parseInt(mealplanId);
         System.out.println("This is the mealplan id: " + mealplanId);
         System.out.println(mealplanId instanceof String);
-        //System.out.println(mealplanId instanceof int);
+        System.out.println(mealplanIdInt == Integer.parseInt(mealplanId));
+        System.out.println(mealplanIdInt);
 
-        /*List<Map<String, Object>> recipes = (List<Map<String, Object>>) jsonMap.get("mealplanId");
-        System.out.println("This is the recipes object: " + recipes);*/
-        /*registeredUserService.addNewStudent(newUid);
-        int mealplan_id = mealplanService.addNewMealplan(planName, Timestamp.valueOf(LocalDateTime.now()), newUid);
-        for (Map<String, Object> map : recipes) {
-            String rName = (String) map.get("name");
-            //System.out.println(recipes.get(0));
-//            System.out.println(rName);
-            Object rPortion = map.get("portion");
-            int rId = (int) map.get("id");
-//            System.out.println(("This is the id of the recipe: " + rId));
-            if (rPortion.getClass() == String.class) {
-                recipeService.addNewRecipe(rId, rName, Integer.parseInt((String) rPortion));
-            } else {
-                recipeService.addNewRecipe(rId, rName, (int) rPortion);
-            }
-
-            recipeMealplanService.addNewRecipeMealplan(rId, mealplan_id);
-        }*/
+        mealplanService.deleteMealplan(mealplanIdInt);
     }
 
 }

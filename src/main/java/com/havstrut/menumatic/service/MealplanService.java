@@ -63,6 +63,11 @@ public class MealplanService {
     public List<Mealplan> getMealplanByUserId(String user_id) {
         return mealplanRepository.findByUserId(user_id);
     }
+
+    public void deleteMealplan(int mealplan_id) {
+        mealplanRepository.deleteById(mealplan_id);
+    }
+
     public int addNewMealplan(String nameOfMealplan, Timestamp timeOfMealplan, String userId) throws Exception {
         List<Mealplan> mealplanOptional = mealplanRepository.findByUserId(userId);
         for (Mealplan mp : mealplanOptional) {
