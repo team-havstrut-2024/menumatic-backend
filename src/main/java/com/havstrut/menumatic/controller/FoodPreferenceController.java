@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("/food-preferences/")
+@RequestMapping("/api/food-preferences/")
 @RestController
 public class FoodPreferenceController {
 
