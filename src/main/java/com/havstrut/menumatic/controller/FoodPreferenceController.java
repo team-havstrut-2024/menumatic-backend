@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/") //byta till "/registeredUsers" ?
+@RequestMapping("/api/food-preferences/") //byta till "/registeredUsers" ?
 
 public class FoodPreferenceController {
 
