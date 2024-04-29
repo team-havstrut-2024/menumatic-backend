@@ -1,6 +1,7 @@
 package com.havstrut.menumatic.service;
 
 import com.havstrut.menumatic.model.FoodPreference;
+import com.havstrut.menumatic.model.FoodPreferenceId;
 import com.havstrut.menumatic.repository.FoodPreferenceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,14 +24,13 @@ public class FoodPreferenceService {
     public void CreateFoodPreference(String uid, String preference) throws Exception{
         List<FoodPreference> table = foodPreferenceRepository.findByUserId(uid);
         for (FoodPreference row : table) {
-            if (row.equals(preference))
+            if (row.getFoodPreferenceId().getPreference().equals(preference))
                     throw new Exception("Food preference \"" + preference + "\" already exists for user " + uid);
         }
-        FoodPreference fp = new FoodPreference(uid, preference);
+        FoodPreference fp = new FoodPreference(new FoodPreferenceId(uid, preference));
         this.foodPreferenceRepository.save(fp); // store new foodpreference in table
     }
     // Delete
-    // Might remove later. Since preferences should be reset when setting them, just use nuke()
     public void deleteFoodPreference(String uid, String preference) throws Exception {
         List<FoodPreference> table = foodPreferenceRepository.findByUserId(uid);
         boolean exists = false;
@@ -43,7 +43,7 @@ public class FoodPreferenceService {
         if (!exists) {
             throw new Exception("Food preference \"" + preference + "\" not present for user " + uid);
         }
-        FoodPreference fp = new FoodPreference(uid, preference);
+        FoodPreference fp = new FoodPreference(new FoodPreferenceId(uid, preference));
             this.foodPreferenceRepository.delete(fp);
     }
 
@@ -52,13 +52,15 @@ public class FoodPreferenceService {
         List<FoodPreference> prefs = foodPreferenceRepository.findByUserId(uid);
         LinkedList<String> strs = new LinkedList<>();
         for (FoodPreference fp : prefs) {
-            strs.add(fp.getPreference());
+            strs.add(fp.getFoodPreferenceId().getPreference());
         }
         return strs;
     }
     // Delete all food preferences associated with an user
     public void nuke (String uid) {
-        foodPreferenceRepository.deleteAll(foodPreferenceRepository.findByUserId(uid));
+        List<FoodPreference> prefs = foodPreferenceRepository.findByUserId(uid);
+        for (FoodPreference fp : prefs)
+            this.foodPreferenceRepository.delete(fp);
     }
 
 

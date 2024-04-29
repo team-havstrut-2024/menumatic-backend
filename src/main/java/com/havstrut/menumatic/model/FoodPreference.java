@@ -6,34 +6,21 @@ import jakarta.persistence.*;
 @Table
 public class FoodPreference {
 
-    @Id
-    @Column(name = "user_id")
-    private String userId;
-
-    @Column(name = "preference")
-    private String preference;
+   @EmbeddedId
+   FoodPreferenceId foodPreferenceId;
 
     public FoodPreference() {
     }
 
-    public FoodPreference(String userId, String preference) {
-        this.userId = userId;
-        this.preference = preference;
+    public FoodPreference(FoodPreferenceId foodPreferenceId) {
+        this.foodPreferenceId = foodPreferenceId;
     }
 
-    public String getUserId() {
-        return userId;
+    public FoodPreferenceId getFoodPreferenceId() {
+        return foodPreferenceId;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getPreference() {
-        return preference;
-    }
-
-    public void setPreference(String preference) {
-        this.preference = preference;
+    public void setFoodPreferenceId(FoodPreferenceId foodPreferenceId) {
+        this.foodPreferenceId = foodPreferenceId;
     }
 }

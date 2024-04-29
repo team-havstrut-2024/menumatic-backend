@@ -13,7 +13,7 @@ public interface FoodPreferenceRepository extends JpaRepository<FoodPreference, 
 
 
     // Get list of foodpreferences
-    @Query("SELECT fp FROM FoodPreference fp WHERE fp.userId = ?1")
+    @Query("SELECT fp FROM FoodPreference fp WHERE fp.foodPreferenceId.userId = ?1")
     List<FoodPreference> findByUserId(String id);
 
 }
