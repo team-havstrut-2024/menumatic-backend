@@ -5,7 +5,9 @@ import com.havstrut.menumatic.repository.FoodPreferenceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class FoodPreferenceService {
@@ -28,6 +30,7 @@ public class FoodPreferenceService {
         this.foodPreferenceRepository.save(fp); // store new foodpreference in table
     }
     // Delete
+    // Might remove later. Since preferences should be reset when setting them, just use nuke()
     public void deleteFoodPreference(String uid, String preference) throws Exception {
         List<FoodPreference> table = foodPreferenceRepository.findByUserId(uid);
         boolean exists = false;
@@ -42,11 +45,21 @@ public class FoodPreferenceService {
         }
         FoodPreference fp = new FoodPreference(uid, preference);
             this.foodPreferenceRepository.delete(fp);
-}
+    }
 
     // getAllFoodPreferencesForUser
-    public void getAllFoodPreferencesForUser
-
+    public List<String> getAllFoodPreferencesForUser (String uid) {
+        List<FoodPreference> prefs = foodPreferenceRepository.findByUserId(uid);
+        LinkedList<String> strs = new LinkedList<>();
+        for (FoodPreference fp : prefs) {
+            strs.add(fp.getPreference());
+        }
+        return strs;
+    }
+    // Delete all food preferences associated with an user
+    public void nuke (String uid) {
+        foodPreferenceRepository.deleteAll(foodPreferenceRepository.findByUserId(uid));
+    }
 
 
 
