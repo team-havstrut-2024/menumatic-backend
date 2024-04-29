@@ -38,19 +38,20 @@ public class MealplanController {
         jsonMap = objectMapper.readValue(json, HashMap.class);
 
         System.out.println(("This is the json object: " + jsonMap));
-
+        
         String mealplanId = (String) jsonMap.get("mealplanId");
+        int mealplanIdInt = Integer.parseInt(mealplanId);
+        System.out.println("This is the mealplan id: " + mealplanId);
+        mealplanService.deleteMealplan(mealplanIdInt);
+
 
         /**
          * Debugging printout.
          */
-        int mealplanIdInt = Integer.parseInt(mealplanId);
-        System.out.println("This is the mealplan id: " + mealplanId);
+
         System.out.println(mealplanId instanceof String);
         System.out.println(mealplanIdInt == Integer.parseInt(mealplanId));
         System.out.println(mealplanIdInt);
-
-        mealplanService.deleteMealplan(mealplanIdInt);
     }
 
 }
