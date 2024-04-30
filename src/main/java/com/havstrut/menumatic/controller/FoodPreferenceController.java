@@ -2,6 +2,7 @@ package com.havstrut.menumatic.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.havstrut.menumatic.service.FoodPreferenceService;
+import com.havstrut.menumatic.service.RegisteredUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +15,7 @@ public class FoodPreferenceController {
 
     private FoodPreferenceService foodPreferenceService;
     private final ObjectMapper objectMapper;
+    private RegisteredUserService registeredUserService;
 
     @Autowired
     public FoodPreferenceController(FoodPreferenceService foodPreferenceService, ObjectMapper objectMapper) {
@@ -39,6 +41,8 @@ public class FoodPreferenceController {
     @CrossOrigin
     @PostMapping("set/")
     public void setUserPreference(@RequestHeader("User-id") String uid, @RequestBody List<String> parameters) {
+        String newUid = uid.replace('"', ' ').trim();
+        registeredUserService.addNewStudent(newUid);
         foodPreferenceService.nuke(uid);
         for (String s : parameters) {
             System.out.println("s");
