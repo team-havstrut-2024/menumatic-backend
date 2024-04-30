@@ -20,12 +20,14 @@ public class MealplanService {
     private final MealplanRepository mealplanRepository;
     private final RecipeRepository recipeRepository;
     private final RecipeMealplanRepository recipeMealplanRepository;
+    private final ExcludedIngredientService excludedIngredientService;
 
     @Autowired
-    public MealplanService(MealplanRepository mealplanRepository, RecipeRepository recipeRepository, RecipeMealplanRepository recipeMealplanRepository) {
+    public MealplanService(MealplanRepository mealplanRepository, RecipeRepository recipeRepository, RecipeMealplanRepository recipeMealplanRepository, ExcludedIngredientService excludedIngredientService) {
         this.mealplanRepository = mealplanRepository;
         this.recipeRepository = recipeRepository;
         this.recipeMealplanRepository = recipeMealplanRepository;
+        this.excludedIngredientService = excludedIngredientService;
     }
 
     public List<Map<String, Object>> getMealplansByUserId(String uid){
@@ -65,6 +67,7 @@ public class MealplanService {
     }
 
     public void deleteMealplan(int mealplan_id) {
+        excludedIngredientService.nuke(mealplan_id); // Remove all excluded ingredients
         mealplanRepository.deleteById(mealplan_id);
     }
 

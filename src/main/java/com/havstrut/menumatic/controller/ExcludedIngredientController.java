@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@RequestMapping("/api/mealplan/excluded-ingredients/")
 @RestController
 public class ExcludedIngredientController {
 
