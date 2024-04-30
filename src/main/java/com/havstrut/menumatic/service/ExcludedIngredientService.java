@@ -4,7 +4,7 @@ import com.havstrut.menumatic.model.ExcludedIngredientId;
 import com.havstrut.menumatic.repository.ExcludedIngredientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.havstrut.menumatic.model.ExcludedIngredient
+import com.havstrut.menumatic.model.ExcludedIngredient;
 import java.util.LinkedList;
 import java.util.List;
 
