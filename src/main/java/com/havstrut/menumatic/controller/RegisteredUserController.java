@@ -95,9 +95,11 @@ public class RegisteredUserController {
     }
 
     @CrossOrigin
-    @DeleteMapping("delete/")
+    @PostMapping("delete/")
     public void deleteUser(@RequestHeader("User-id") String uid) {
-        registeredUserService.deleteUser(uid);
+        String newUid = uid.replace('"', ' ').trim();
+        System.out.println(newUid);
+        registeredUserService.deleteUser(newUid);
     }
 
 

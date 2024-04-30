@@ -13,7 +13,6 @@ public interface RegisteredUserRepository extends JpaRepository<RegisteredUser, 
     Optional<RegisteredUser> findRegisteredUserById(int user_id);*/
 
 
-
     @Query("SELECT u FROM RegisteredUser u WHERE u.userId = ?1")
     Optional<RegisteredUser> findById(String userId);
 }
