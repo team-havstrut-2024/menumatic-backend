@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class FoodPreferenceService {
@@ -21,7 +20,7 @@ public class FoodPreferenceService {
     }
 
     // Create a foodpreference if it is not already present
-    public void CreateFoodPreference(String uid, String preference) throws Exception{
+    public void createFoodPreference(String uid, String preference) throws Exception{
         List<FoodPreference> table = foodPreferenceRepository.findByUserId(uid);
         for (FoodPreference row : table) {
             if (row.getFoodPreferenceId().getPreference().equals(preference))
@@ -30,7 +29,8 @@ public class FoodPreferenceService {
         FoodPreference fp = new FoodPreference(new FoodPreferenceId(uid, preference));
         this.foodPreferenceRepository.save(fp); // store new foodpreference in table
     }
-    // Delete
+
+    // Delete, not used.
     public void deleteFoodPreference(String uid, String preference) throws Exception {
         List<FoodPreference> table = foodPreferenceRepository.findByUserId(uid);
         boolean exists = false;
@@ -62,6 +62,8 @@ public class FoodPreferenceService {
         for (FoodPreference fp : prefs)
             this.foodPreferenceRepository.delete(fp);
     }
+
+
 
 
 

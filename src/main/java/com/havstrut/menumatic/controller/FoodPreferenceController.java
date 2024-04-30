@@ -43,7 +43,7 @@ public class FoodPreferenceController {
         for (String s : parameters) {
             System.out.println("s");
             try {
-            foodPreferenceService.CreateFoodPreference(uid, s);
+            foodPreferenceService.createFoodPreference(uid, s);
             }
             catch(Exception e) {
                 // Log or handle the exception appropriately
