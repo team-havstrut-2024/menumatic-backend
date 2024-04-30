@@ -44,7 +44,6 @@ public class FoodPreferenceController {
             System.out.println("s");
             try {
             foodPreferenceService.CreateFoodPreference(uid, s);
-
             }
             catch(Exception e) {
                 // Log or handle the exception appropriately
