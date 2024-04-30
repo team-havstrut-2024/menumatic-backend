@@ -23,4 +23,7 @@ public class FoodPreference {
     public void setFoodPreferenceId(FoodPreferenceId foodPreferenceId) {
         this.foodPreferenceId = foodPreferenceId;
     }
+
+
+
 }

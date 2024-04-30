@@ -1,9 +1,6 @@
 package com.havstrut.menumatic.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 
 @Embeddable
@@ -14,7 +11,7 @@ public class FoodPreferenceId {
 
     @Column(name = "preference")
     private String preference;
-
+    
     public FoodPreferenceId() {
     }
 
