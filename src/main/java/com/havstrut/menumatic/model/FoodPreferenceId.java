@@ -2,9 +2,11 @@ package com.havstrut.menumatic.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
+
 
 @Embeddable
-public class FoodPreferenceId {
+public class FoodPreferenceId implements Serializable {
 
     @Column(name = "user_id")
     private String userId;
