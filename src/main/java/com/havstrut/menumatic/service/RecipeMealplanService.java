@@ -29,7 +29,6 @@ public class RecipeMealplanService {
         return recipeMealplanOptional.get();
     }
     public void addNewRecipeMealplan(int recipeId, int mealplanId) {
-        // to do: check for duplicates
         recipeMealplanRepository.save(new RecipeMealplan(new RecipeMealplanId(recipeId, mealplanId)));
     }
 }

@@ -12,15 +12,16 @@ public class FavoriteDishId implements Serializable {
     private String userId;
 
     @Column(name = "recipe_id")
-    private int recipe_id;
+    private int recipeId;
 
 
     public FavoriteDishId() {
     }
 
-    public FavoriteDishId(String userId, int recipe_id) {
+
+    public FavoriteDishId(String userId, int recipeId) {
         this.userId = userId;
-        this.recipe_id = recipe_id;
+        this.recipeId = recipeId;
     }
 
     public String getUserId() {
@@ -31,11 +32,11 @@ public class FavoriteDishId implements Serializable {
         this.userId = userId;
     }
 
-    public int getRecipe_id() {
-        return recipe_id;
+    public int getRecipeId() {
+        return recipeId;
     }
 
-    public void setRecipe_id(int recipe_id) {
-        this.recipe_id = recipe_id;
+    public void setRecipeId(int recipeId) {
+        this.recipeId = recipeId;
     }
 }

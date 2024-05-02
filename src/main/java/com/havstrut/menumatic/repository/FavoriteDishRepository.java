@@ -13,4 +13,6 @@ public interface FavoriteDishRepository extends JpaRepository<FavoriteDish, Inte
     @Query("SELECT fd FROM FavoriteDish fd WHERE fd.favoriteDishId.userId = ?1")
     List<FavoriteDish> findByUserId(String uid);
 
+    @Query("SELECT fd FROM FavoriteDish fd WHERE fd.favoriteDishId.recipeId= ?1")
+    List<FavoriteDish> findByRecipeId(Integer id);
 }

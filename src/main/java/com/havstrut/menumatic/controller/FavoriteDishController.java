@@ -2,14 +2,13 @@ package com.havstrut.menumatic.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.havstrut.menumatic.service.FavoriteDishService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
-@RestController("/api/favoritedish/")
+@RestController
+@RequestMapping("/api/favoritedish/")
 public class FavoriteDishController {
 
     private FavoriteDishService favoriteDishService;
@@ -23,9 +22,27 @@ public class FavoriteDishController {
 
     @CrossOrigin
     @GetMapping("get/")
-    public List<String> getFavoriteDishes(@RequestHeader("User-id") String uid) {
+    //Ska returnera en String i slutändan.
+    public Map<Integer, String> getFavoriteDishes(@RequestHeader("User-id") String uid) {
+        String newUid = uid.replace('"', ' ').trim();
+        List<Integer> recipe_ids = favoriteDishService.getAllFavoriteDishesForUser(newUid);
+        System.out.println("These are the recipe ids: " + recipe_ids);
+        Map<Integer, String> favoriteDishes = favoriteDishService.getRecipeNamesForFavoriteDish(recipe_ids);
+        System.out.println("The favorite dishes are: " + favoriteDishes);
+        return favoriteDishes;
+    }
 
-        List<Integer> recipe_ids = favoriteDishService.getAllFavoriteDishesForUser(uid);
-        favoriteDishService.getRecipeNamesForFavorite
+    @CrossOrigin
+    @PostMapping("set/")
+    public void addFavoriteDishes(@RequestHeader("User-id") String uid, @RequestBody List<Integer> recipeIdsToFavorite) throws Exception {
+        String newUid = uid.replace('"', ' ').trim();
+        try {
+            for (Integer recipeId : recipeIdsToFavorite) {
+                favoriteDishService.createFavoriteFood(newUid, recipeId);
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 }
