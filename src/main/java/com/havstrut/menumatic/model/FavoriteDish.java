@@ -7,4 +7,21 @@ import jakarta.persistence.*;
 @Table
 public class FavoriteDish {
 
+    @EmbeddedId
+    private FavoriteDishId favoriteDishId;
+
+    public FavoriteDish(FavoriteDishId favoriteDishId) {
+        this.favoriteDishId = favoriteDishId;
+    }
+
+    public FavoriteDish() {
+    }
+
+    public FavoriteDishId getFavoriteDishId() {
+        return favoriteDishId;
+    }
+
+    public void setFavoriteDishId(FavoriteDishId favoriteDishId) {
+        this.favoriteDishId = favoriteDishId;
+    }
 }
