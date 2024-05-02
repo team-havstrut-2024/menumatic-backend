@@ -47,9 +47,6 @@ public class RegisteredUserController {
         this.recipeMealplanService = recipeMealplanService;
     }
 
-
-
-
     /*@GetMapping(path = "getStudent/{user_id}")
     public RegisteredUser read(@PathVariable int user_id) {
         Optional<RegisteredUser> registedUserOptional = registeredUserRepository.findRegisteredUserById(user_id);
@@ -138,7 +135,6 @@ public class RegisteredUserController {
             else{
                 recipeService.addNewRecipe(rId,  rName, (int) rPortion);
             }
-
             recipeMealplanService.addNewRecipeMealplan(rId, mealplan_id);
         }
         Map<String, Integer> mealplanResultToFrontend = new HashMap<>();
