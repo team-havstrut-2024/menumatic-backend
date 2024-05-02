@@ -30,6 +30,11 @@ public class FoodPreferenceController {
         return foodPreferenceService.getAllFoodPreferencesForUser(uid);
     }
 
+    @CrossOrigin
+    @DeleteMapping("delete")
+    public void deleteFoodPreferences(@RequestHeader("User-id") String uid) {
+        foodPreferenceService.nuke(uid.replace("\"","").trim());
+    }
 
     /*
     *  Set user preference
@@ -52,4 +57,5 @@ public class FoodPreferenceController {
             }
         }
     }
+
 }
