@@ -21,8 +21,6 @@ public class ExcludedIngredientController {
     public List<String> getUserPreference(@RequestHeader("Mealplan-id") int mid) {
         return excludedIngredientService.getAllExcludedIngredientsForMealplan(mid);
     }
-
-
     /*
      *  Set user preference
      *  Will write over current preferences with the new list
@@ -44,4 +42,5 @@ public class ExcludedIngredientController {
             }
         }
     }
+    
 }
