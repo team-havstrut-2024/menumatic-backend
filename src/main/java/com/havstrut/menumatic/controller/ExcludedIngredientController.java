@@ -28,7 +28,7 @@ public class ExcludedIngredientController {
 
     @CrossOrigin
     @PostMapping("set/")
-    public void setUserPreference(@RequestHeader("Mealplan-id") int mid, @RequestBody List<String> parameters) {
+    public void setUserPreference(@RequestHeader("mealplan-id") int mid, @RequestBody List<String> parameters) {
         excludedIngredientService.nuke(mid);
         for (String s : parameters) {
             System.out.println("s");

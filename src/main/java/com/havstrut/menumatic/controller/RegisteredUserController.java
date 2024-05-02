@@ -105,7 +105,7 @@ public class RegisteredUserController {
 
     @CrossOrigin
     @PostMapping("create/")
-    public void CreateTestUser(@RequestHeader("User-id") String uid, @RequestBody String json) throws Exception {
+    public Map<String, Integer> CreateTestUser(@RequestHeader("User-id") String uid, @RequestBody String json) throws Exception {
         String newUid = uid.replace('"', ' ').trim();
         System.out.println(newUid);
         System.out.println(json);
@@ -141,6 +141,9 @@ public class RegisteredUserController {
 
             recipeMealplanService.addNewRecipeMealplan(rId, mealplan_id);
         }
+        Map<String, Integer> mealplanResultToFrontend = new HashMap<>();
+        mealplanResultToFrontend.put("mealplan_id", mealplan_id);
+        return mealplanResultToFrontend;
 
 
         /*int rPortion = recipes.get(Integer.parseInt("portion"));
