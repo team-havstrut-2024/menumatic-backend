@@ -27,7 +27,7 @@ public class MealplanController {
 
 
     @CrossOrigin
-    @PostMapping("delete/")
+    @DeleteMapping("delete/")
     public void deleteMealplan(@RequestHeader("User-id") String uid, @RequestBody String json) throws Exception {
         String newUid = uid.replace('"', ' ').trim();
         System.out.println(newUid);
@@ -39,7 +39,7 @@ public class MealplanController {
 
         System.out.println(("This is the json object: " + jsonMap));
         
-        String mealplanId = (String) jsonMap.get("mealplanId");
+        String mealplanId = Integer.toString((int)jsonMap.get("mealplanId"));
         int mealplanIdInt = Integer.parseInt(mealplanId);
         System.out.println("This is the mealplan id: " + mealplanId);
         mealplanService.deleteMealplan(mealplanIdInt);
