@@ -1,22 +1,14 @@
 package com.havstrut.menumatic.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.havstrut.menumatic.model.RecipeMealplan;
-import com.havstrut.menumatic.model.RegisteredUser;
-//import com.havstrut.menumatic.request.CreateUserRequest;
 import com.havstrut.menumatic.service.MealplanService;
 import com.havstrut.menumatic.service.RecipeMealplanService;
 import com.havstrut.menumatic.service.RecipeService;
 import com.havstrut.menumatic.service.RegisteredUserService;
-import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.boot.json.JacksonJsonParser;
 
-import java.lang.reflect.Array;
-import java.sql.SQLOutput;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -86,7 +78,7 @@ public class RegisteredUserController {
      //Gustav FETCH
     @CrossOrigin
     @GetMapping("mealplans/")
-    public List<Map<String,Object>> fetchMealplans(@RequestHeader("User-id") String uid) {
+    public List<Map<String, Object>> fetchMealplans(@RequestHeader("User-id") String uid) {
         System.out.println(uid);
         return mealplanService.getMealplansByUserId(uid);
     }
