@@ -51,10 +51,16 @@ public class KitchenEquipmentController {
 
     @CrossOrigin
     @DeleteMapping("delete/")
-    public void deleteKitchenEquipment(@RequestHeader("User-id") String uid, @RequestBody String preference_text) throws Exception {
+    public void deleteKitchenEquipment(@RequestHeader("User-id") String uid, @RequestBody List<String> preference_text) throws Exception {
         String newUid = uid.replace('"', ' ').trim();
-        kitchenEquipmentService.deleteKitchenEquipment(newUid, preference_text);
+        //String newPreference_text = uid.replace('"', ' ').trim();
+        try {
+            for (String s : preference_text) {
+                kitchenEquipmentService.deleteKitchenEquipment(newUid, s);
+            }
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
     }
-
 
 }
