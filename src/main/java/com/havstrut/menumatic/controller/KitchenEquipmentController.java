@@ -49,6 +49,12 @@ public class KitchenEquipmentController {
         }
     }
 
+    @CrossOrigin
+    @DeleteMapping("delete/")
+    public void deleteKitchenEquipment(@RequestHeader("User-id") String uid, @RequestBody String preference_text) throws Exception {
+        String newUid = uid.replace('"', ' ').trim();
+        kitchenEquipmentService.deleteKitchenEquipment(newUid, preference_text);
+    }
 
 
 }
