@@ -15,6 +15,7 @@ public class KitchenEquipment {
         this.kitchenEquipmentId = kitchenEquipmentId;
     }
 
+    // Default constructor needed by JPA. Avoid using this, however.
     public KitchenEquipment() {
     }
 

@@ -11,7 +11,8 @@ public class FoodPreferenceId {
 
     @Column(name = "preference")
     private String preference;
-    
+
+    // Default constructor needed by JPA. Avoid using this, however.
     public FoodPreferenceId() {
     }
 

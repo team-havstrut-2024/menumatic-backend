@@ -14,7 +14,7 @@ public class FavoriteDishId implements Serializable {
     @Column(name = "recipe_id")
     private int recipeId;
 
-
+    // Default constructor needed by JPA. Avoid using this, however.
     public FavoriteDishId() {
     }
 

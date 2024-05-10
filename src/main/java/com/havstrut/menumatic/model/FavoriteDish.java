@@ -14,6 +14,7 @@ public class FavoriteDish {
         this.favoriteDishId = favoriteDishId;
     }
 
+    // Default constructor needed by JPA. Avoid using this, however.
     public FavoriteDish() {
     }
 

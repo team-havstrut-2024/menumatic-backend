@@ -1,10 +1,11 @@
 package com.havstrut.menumatic.model;
 import jakarta.persistence.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
-import java.util.ArrayList;
-import java.util.List;
+
+/*
+* RegisteredUser
+*  Java object that corresponds to the registered user table in the database
+* */
 
 
 @Entity //For hibernate
@@ -15,18 +16,9 @@ public class RegisteredUser {
     @Column(name = "user_id") // Specify the column name
     private String userId;
 
-    //@OneToMany(mappedBy = "registeredUser")
-    //@OnDelete(action = OnDeleteAction.CASCADE)
-
-    //hmmm...
-  /*  @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(referencedColumnName = "user_id")
-    private List<Mealplan> mealplan = new ArrayList<>();*/
-
-
+    // Default constructor needed by JPA. Avoid using this, however.
     public RegisteredUser() {
     }
-
     public RegisteredUser(String userId) {
         this.userId = userId;
     }

@@ -1,7 +1,6 @@
 package com.havstrut.menumatic.model;
 
 import jakarta.persistence.*;
-import java.util.Objects;
 
 
 import java.io.Serializable;
@@ -14,6 +13,7 @@ public class RecipeMealplanId implements Serializable{
     @Column(name = "mealplan_id")
     private int mealplanId;
 
+    // Default constructor needed by JPA. Avoid using this, however.
     public RecipeMealplanId() {
     }
 
@@ -38,20 +38,4 @@ public class RecipeMealplanId implements Serializable{
         this.mealplanId = mealplanId;
     }
 
-    /**
-     * May be deleted later if not needed. Java has built-in methods..
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RecipeMealplanId that = (RecipeMealplanId) o;
-        return recipeId == that.recipeId &&
-                mealplanId == that.mealplanId;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(recipeId, mealplanId);
-    }
 }
