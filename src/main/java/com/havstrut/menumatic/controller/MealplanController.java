@@ -1,13 +1,9 @@
 package com.havstrut.menumatic.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.havstrut.menumatic.service.MealplanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 import java.util.*;
 
 @RestController
@@ -25,33 +21,14 @@ public class MealplanController {
         this.objectMapper = objectMapper;
     }
 
-
+    // Deletes
     @CrossOrigin
     @DeleteMapping("delete/")
     public void deleteMealplan(@RequestHeader("User-id") String uid, @RequestBody String json) throws Exception {
         String newUid = uid.replace('"', ' ').trim();
         System.out.println(newUid);
         System.out.println(json);
-
-        Map<String, Object> jsonMap = new HashMap<>();
-
-        jsonMap = objectMapper.readValue(json, HashMap.class);
-
-        System.out.println(("This is the json object: " + jsonMap));
-        
-        String mealplanId = Integer.toString((int)jsonMap.get("mealplanId"));
-        int mealplanIdInt = Integer.parseInt(mealplanId);
-        System.out.println("This is the mealplan id: " + mealplanId);
-        mealplanService.deleteMealplan(mealplanIdInt);
-
-
-        /**
-         * Debugging printout.
-         */
-
-        System.out.println(mealplanId instanceof String);
-        System.out.println(mealplanIdInt == Integer.parseInt(mealplanId));
-        System.out.println(mealplanIdInt);
+        mealplanService.deleteMealplansForUser(newUid, json);
     }
 
 }
