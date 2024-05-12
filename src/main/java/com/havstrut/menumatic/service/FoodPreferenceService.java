@@ -13,10 +13,12 @@ import java.util.List;
 public class FoodPreferenceService {
 
     private final FoodPreferenceRepository foodPreferenceRepository;
+    private final RegisteredUserService registeredUserService;
 
     @Autowired
-    public FoodPreferenceService(FoodPreferenceRepository foodPreferenceRepository) {
+    public FoodPreferenceService(FoodPreferenceRepository foodPreferenceRepository, RegisteredUserService registeredUserService) {
         this.foodPreferenceRepository = foodPreferenceRepository;
+        this.registeredUserService = registeredUserService;
     }
 
     // Create a foodpreference if it is not already present
@@ -63,6 +65,20 @@ public class FoodPreferenceService {
             this.foodPreferenceRepository.delete(fp);
     }
 
+    public void setUserFoodPreference(String uid, List<String> preferences) {
+        registeredUserService.addNewStudent(uid);
+        this.nuke(uid);
+        for (String s : preferences) {
+            System.out.println("s");
+            try {
+                this.createFoodPreference(uid, s);
+            }
+            catch(Exception e) {
+                // Log or handle the exception appropriately
+                System.out.println("Error creating preference for user: " + uid + ", item: " + s + ", error: " + e.getMessage());
+            }
+        }
+    }
 
 
 

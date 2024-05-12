@@ -61,4 +61,19 @@ public class ExcludedIngredientService {
             this.excludedIngredientRepository.delete(ei);
     }
 
+
+    public void setExcludedIngredient(int mealplan_id, List<String> parameters) {
+        this.nuke(mealplan_id);
+        for (String s : parameters) {
+            System.out.println("s");
+            try {
+                this.CreateExcludedIngredient(mealplan_id, s);
+
+            }
+            catch(Exception e) {
+                // Log or handle the exception appropriately
+                System.out.println("Error creating excluded ingredient for user: " + mealplan_id + ", item: " + s + ", error: " + e.getMessage());
+            }
+        }
+    }
 }

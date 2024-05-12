@@ -14,14 +14,10 @@ import java.util.List;
 public class FoodPreferenceController {
 
     private FoodPreferenceService foodPreferenceService;
-    private RegisteredUserService registeredUserService;
-    private final ObjectMapper objectMapper;
 
     @Autowired
     public FoodPreferenceController(FoodPreferenceService foodPreferenceService, ObjectMapper objectMapper, RegisteredUserService registeredUserService) {
         this.foodPreferenceService = foodPreferenceService;
-        this.objectMapper = objectMapper;
-        this.registeredUserService = registeredUserService;
     }
 
     /*
@@ -43,17 +39,6 @@ public class FoodPreferenceController {
     @PostMapping("set/")
     public void setUserPreference(@RequestHeader("User-id") String uid, @RequestBody List<String> parameters) {
         String newUid = uid.replace('"', ' ').trim();
-        registeredUserService.addNewStudent(newUid);
-        foodPreferenceService.nuke(newUid);
-        for (String s : parameters) {
-            System.out.println("s");
-            try {
-            foodPreferenceService.createFoodPreference(newUid, s);
-            }
-            catch(Exception e) {
-                // Log or handle the exception appropriately
-                System.out.println("Error creating preference for user: " + newUid + ", item: " + s + ", error: " + e.getMessage());
-            }
-        }
+        foodPreferenceService.setUserFoodPreference(uid, parameters);
     }
 }

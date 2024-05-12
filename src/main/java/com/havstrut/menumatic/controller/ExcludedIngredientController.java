@@ -21,6 +21,8 @@ public class ExcludedIngredientController {
     public List<String> getUserPreference(@RequestHeader("Mealplan-id") int mid) {
         return excludedIngredientService.getAllExcludedIngredientsForMealplan(mid);
     }
+
+    
     /*
      *  Set user preference
      *  Will write over current preferences with the new list
@@ -29,18 +31,7 @@ public class ExcludedIngredientController {
     @CrossOrigin
     @PostMapping("set/")
     public void setUserPreference(@RequestHeader("mealplan-id") int mid, @RequestBody List<String> parameters) {
-        excludedIngredientService.nuke(mid);
-        for (String s : parameters) {
-            System.out.println("s");
-            try {
-                excludedIngredientService.CreateExcludedIngredient(mid, s);
-
-            }
-            catch(Exception e) {
-                // Log or handle the exception appropriately
-                System.out.println("Error creating excluded ingredient for user: " + mid + ", item: " + s + ", error: " + e.getMessage());
-            }
-        }
+        this.excludedIngredientService.setExcludedIngredient(mid, parameters);
     }
     
 }

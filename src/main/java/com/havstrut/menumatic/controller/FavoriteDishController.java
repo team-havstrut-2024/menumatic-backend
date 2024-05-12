@@ -12,12 +12,9 @@ import java.util.Map;
 public class FavoriteDishController {
 
     private FavoriteDishService favoriteDishService;
-    private final ObjectMapper objectMapper;
-
 
     public FavoriteDishController(FavoriteDishService favoriteDishService, ObjectMapper objectMapper) {
         this.favoriteDishService = favoriteDishService;
-        this.objectMapper = objectMapper;
     }
 
     @CrossOrigin
