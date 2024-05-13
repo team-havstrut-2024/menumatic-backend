@@ -28,10 +28,12 @@ public class RegisteredUserService {
     private RecipeMealplanService recipeMealplanService;
 
     @Autowired
-    public RegisteredUserService(RegisteredUserRepository registeredUserRepository, ObjectMapper objectMapper, MealplanService mealplanService) {
+    public RegisteredUserService(RegisteredUserRepository registeredUserRepository, ObjectMapper objectMapper, MealplanService mealplanService, RecipeService recipeService, RecipeMealplanService recipeMealplanService) {
         this.registeredUserRepository = registeredUserRepository;
         this.objectMapper = objectMapper;
         this.mealplanService = mealplanService;
+        this.recipeService = recipeService;
+        this.recipeMealplanService = recipeMealplanService;
     }
 
 
