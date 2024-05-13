@@ -48,14 +48,7 @@ public class ApiLimitService {
     public void setApiCounterLimit(String json) throws Exception {
         System.out.println("This is the json in service layer:" + json);
 
-        Map<String, Object> jsonMap = new HashMap<>();
-
-        jsonMap = objectMapper.readValue(json, HashMap.class);
-
-        System.out.println(("This is the json object: " + jsonMap));
-
-        String countLimit = Integer.toString((int)jsonMap.get("amount_left"));
-        int countLimitInt = Integer.parseInt(countLimit);
+        int countLimitInt = Integer.parseInt(json);
 
 
         System.out.println(countLimitInt);

@@ -28,10 +28,11 @@ public class ApiLimitController {
 
     @CrossOrigin
     @PostMapping("set/")
-    public void setApiLimit(@RequestBody String json) throws Exception {
+    public void setApiLimit(@RequestHeader("request-check") String json) throws Exception {
        // System.out.println(newUid);
         System.out.println(json);
-        apiLimitService.setApiCounterLimit(json);
+        String newJson = json.replace('"', ' ').trim();
+        apiLimitService.setApiCounterLimit(newJson);
     }
 
 
