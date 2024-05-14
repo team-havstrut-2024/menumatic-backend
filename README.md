@@ -162,3 +162,7 @@ This orientation aims to familiarize anyone interested in running and testing th
   - Enter your username and password.
   - `Database: <Name of your database>`.
   - Test the connection, apply, and then OK.
+
+### Running Manually Without IDE
+- Navigate to project root folder
+- Run the command ```./mvnw spring-boot:run```
