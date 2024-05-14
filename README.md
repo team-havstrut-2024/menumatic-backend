@@ -7,7 +7,7 @@ This orientation aims to familiarize anyone interested in running and testing th
 ### Dependencies
 - Java 17
 - Maven
-- Tomcat 10
+- Tomcat 10 (handled by Spring Boot)
 <small> The rest is installed via Maven.
 
 ### Spring Boot Dependencies
