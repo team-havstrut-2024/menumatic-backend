@@ -1,27 +1,14 @@
-# menumatic-backend
-Backend server for menumatic.
-## Depedencies
-1. Java 17
-2. Maven
-3. Tomcat 10
-The rest should be automatically installed via maven.
-### Database
-PostgreSQL is used as DBMS.
-Can be installed either manually or via docker.
-
-## Running the server
-### IntelliJ
-IntelliJ IDEA ultimate can also be used, which can manage many things automatically
-### Manually
-1. Navigate to project root folder
-2. Run the command 
-./mvnw spring-boot:run
-
 ## Backend Orientation: Menumatic
 
 This orientation aims to familiarize anyone interested in running and testing this project. The backend environment is written in Java 17 using the Spring Boot framework. This tutorial covers only the backend aspect of the application, and assumes that the user is also running the [frontend tutorial](https://github.com/Daniel3178/menumatic/blob/master/README.md) to run the fullstack application.
 
 **IDE:** IntelliJ Ultimate Edition is recommended, as this was the IDE used for this project hence the tutorial will be written with that in mind. You may however choose any other IDE that works best for you, following general instructions for how to setup what is described below.
+
+### Dependencies
+- Java 17
+- Maven
+- Tomcat 10
+<small> The rest is installed via Maven.
 
 ### Spring Boot Dependencies
 <small>Automatically included in the `pom.xml` file when cloning and running the project.</small>
@@ -34,14 +21,35 @@ This orientation aims to familiarize anyone interested in running and testing th
 - **Jackson Databind**
 - **PostgreSQL JDBC Driver**
 
+
 ## Step by Step Instructions for Testing and Running the Backend Locally
 
-### Getting Started (Windows)
+### Install Apache Maven
+- Download and install Maven from [here](https://maven.apache.org/download.cgi)
+- Download the latest version, for example: (e.g., `apache-maven-3.8.5-bin.zip`)
+- Extract the Zip file and choose a destination folder (e.g., `C:\Program Files\Apache\`)
+
+#### Add Maven to Path Variables
+  - Navigate to System Properties in Settings.
+  - Click on Path Variables.
+  - Navigate to "Path."
+  - Locate the bin folder for Maven on your system (e.g., `C:\Program Files\Apache\apache-maven-3.8.5\bin`). Add this path to your system's Path variables and press OK.
+
+  - You may also add ```%MAVEN_HOME%\bin``` to the Path as well.
+
+#### Verify Installation
+- Open a new Command Prompt Window.
+- Enter ```mvn -v```
+- If nothing is shown, verify that your path variables were handled correctly, and restart your system.
+
+
+
+### Getting Started With Postgres (Windows)
 
 - **Download and Install PostgreSQL 16**: 
   [Visit the official website](https://www.postgresql.org/download/)
 
-- **Add PostgreSQL 16 to Path Environment**:
+- **Add PostgreSQL 16 to Path Variables**:
   - Navigate to System Properties in Settings.
   - Click on Path Variables.
   - Navigate to "Path."
