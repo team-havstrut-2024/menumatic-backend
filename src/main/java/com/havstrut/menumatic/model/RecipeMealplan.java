@@ -2,8 +2,6 @@ package com.havstrut.menumatic.model;
 
 import jakarta.persistence.*;
 
-import java.sql.Timestamp;
-import java.util.Objects;
 
 @Entity
 @Table
@@ -14,16 +12,13 @@ public class RecipeMealplan {
     @EmbeddedId
     private RecipeMealplanId recipeMealplanId;
 
-
+    // Default constructor needed by JPA. Avoid using this, however.
     public RecipeMealplan() {
     }
 
     public RecipeMealplan(RecipeMealplanId recipeMealplanId)
     {
         this.recipeMealplanId = recipeMealplanId;
-    }
-
-    public RecipeMealplan(Object val) {
     }
 
     public RecipeMealplanId getRecipeMealplanId() {

@@ -20,6 +20,7 @@ public class KitchenEquipmentId implements Serializable {
         this.utility = utility;
     }
 
+    // Default constructor needed by JPA. Avoid using this, however.
     public KitchenEquipmentId() {
     }
 

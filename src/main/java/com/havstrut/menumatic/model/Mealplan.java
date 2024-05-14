@@ -2,8 +2,6 @@ package com.havstrut.menumatic.model;
 
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 import java.sql.Timestamp;
 
@@ -25,10 +23,6 @@ public class Mealplan {
     @Column(name = "user_id")
     private String userId;
 
-    /*@ManyToOne
-    @JoinColumn(referencedColumnName = "user_id", nullable = false, updatable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private RegisteredUser registeredUser;*/
 
     public Mealplan( Timestamp timeOfMealplan, String nameOfMealplan, String userId) {
         this.timeOfMealplan = timeOfMealplan;
@@ -36,6 +30,7 @@ public class Mealplan {
         this.userId = userId;
     }
 
+    // Default constructor needed by JPA. Avoid using this, however.
     public Mealplan() {
     }
 

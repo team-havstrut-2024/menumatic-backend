@@ -16,6 +16,7 @@ public class Recipe {
     @Column(name = "portions")
     private int portions;
 
+    // Default constructor needed by JPA. Avoid using this, however.
     public Recipe() {
     }
 

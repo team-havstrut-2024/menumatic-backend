@@ -43,11 +43,11 @@ public class CreateUserRequest {
             this.portion = portion;
         }
 
-        public long getId() {
+        public long getTimeStamp() {
             return id;
         }
 
-        public void setId(long id) {
+        public void setTimeStamp(long id) {
             this.id = id;
         }
 

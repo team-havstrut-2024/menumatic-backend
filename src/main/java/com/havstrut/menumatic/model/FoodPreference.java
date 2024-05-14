@@ -9,6 +9,7 @@ public class FoodPreference {
    @EmbeddedId
    FoodPreferenceId foodPreferenceId;
 
+    // Default constructor needed by JPA. Avoid using this, however.
     public FoodPreference() {
     }
 

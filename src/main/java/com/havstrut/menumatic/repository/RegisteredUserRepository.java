@@ -9,10 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface RegisteredUserRepository extends JpaRepository<RegisteredUser, Integer> {
-    /*@Query("SELECT s FROM RegisteredUser s WHERE s.user_id = ?1")
-    Optional<RegisteredUser> findRegisteredUserById(int user_id);*/
-
-
+    // Select a user with ID
     @Query("SELECT u FROM RegisteredUser u WHERE u.userId = ?1")
     Optional<RegisteredUser> findById(String userId);
 }

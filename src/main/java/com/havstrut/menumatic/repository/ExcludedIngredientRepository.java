@@ -9,6 +9,7 @@ import java.util.List;
 
 @Repository
 public interface ExcludedIngredientRepository extends JpaRepository<ExcludedIngredient, Integer> {
+    // Select excluded ingredients for mealplan id
     @Query("SELECT ei FROM ExcludedIngredient ei WHERE ei.excludedIngredientId.mealplanId = ?1")
     List<ExcludedIngredient> findByMealPlan(int id);
 }

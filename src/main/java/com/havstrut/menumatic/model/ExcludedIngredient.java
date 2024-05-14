@@ -2,7 +2,7 @@ package com.havstrut.menumatic.model;
 
 
 import jakarta.persistence.*;
-import jdk.jfr.ContentType;
+
 
 @Entity
 @Table
@@ -11,6 +11,7 @@ public class ExcludedIngredient {
     @EmbeddedId
     private ExcludedIngredientId excludedIngredientId;
 
+    // Default constructor needed by JPA. Avoid using this, however.
     public ExcludedIngredient() {
     }
 

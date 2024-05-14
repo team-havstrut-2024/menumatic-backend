@@ -1,7 +1,6 @@
 package com.havstrut.menumatic.model;
 
 import jakarta.persistence.*;
-import java.util.Objects;
 
 
 import java.io.Serializable;
@@ -18,7 +17,7 @@ public class ExcludedIngredientId implements Serializable {
         this.mealplanId = mealplanId;
         this.nameOfExcludedIngredient = nameOfExcludedIngredient;
     }
-
+    // Default constructor needed by JPA. Avoid using this, however.
     public ExcludedIngredientId() {
     }
 
@@ -38,20 +37,4 @@ public class ExcludedIngredientId implements Serializable {
         this.nameOfExcludedIngredient = nameOfExcludedIngredient;
     }
 
-    /**
-     * May be deleted later if not needed. Java has built-in methods..
-     */
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ExcludedIngredientId that = (ExcludedIngredientId) o;
-        return mealplanId == that.mealplanId &&
-                Objects.equals(nameOfExcludedIngredient, that.nameOfExcludedIngredient);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(mealplanId, nameOfExcludedIngredient);
-    }
 }

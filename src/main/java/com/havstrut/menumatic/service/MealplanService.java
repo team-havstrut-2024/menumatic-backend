@@ -9,7 +9,7 @@ import com.havstrut.menumatic.repository.RecipeMealplanRepository;
 import com.havstrut.menumatic.repository.RecipeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -21,13 +21,15 @@ public class MealplanService {
     private final RecipeRepository recipeRepository;
     private final RecipeMealplanRepository recipeMealplanRepository;
     private final ExcludedIngredientService excludedIngredientService;
+    private final ObjectMapper objectMapper;
 
     @Autowired
-    public MealplanService(MealplanRepository mealplanRepository, RecipeRepository recipeRepository, RecipeMealplanRepository recipeMealplanRepository, ExcludedIngredientService excludedIngredientService) {
+    public MealplanService(MealplanRepository mealplanRepository, RecipeRepository recipeRepository, RecipeMealplanRepository recipeMealplanRepository, ExcludedIngredientService excludedIngredientService, ObjectMapper objectMapper) {
         this.mealplanRepository = mealplanRepository;
         this.recipeRepository = recipeRepository;
         this.recipeMealplanRepository = recipeMealplanRepository;
         this.excludedIngredientService = excludedIngredientService;
+        this.objectMapper = objectMapper;
     }
 
     public List<Map<String, Object>> getMealplansByUserId(String uid){
@@ -64,6 +66,31 @@ public class MealplanService {
 
     public List<Mealplan> getMealplanByUserId(String user_id) {
         return mealplanRepository.findByUserId(user_id);
+    }
+
+
+    public void deleteMealplansForUser (String uid, String json) throws Exception {
+
+
+        Map<String, Object> jsonMap = new HashMap<>();
+
+        jsonMap = objectMapper.readValue(json, HashMap.class);
+
+        System.out.println(("This is the json object: " + jsonMap));
+
+        String mealplanId = Integer.toString((int)jsonMap.get("mealplanId"));
+        int mealplanIdInt = Integer.parseInt(mealplanId);
+        System.out.println("This is the mealplan id: " + mealplanId);
+        this.deleteMealplan(mealplanIdInt);
+
+
+        /**
+         * Debugging printout.
+         */
+
+        System.out.println(mealplanId instanceof String);
+        System.out.println(mealplanIdInt == Integer.parseInt(mealplanId));
+        System.out.println(mealplanIdInt);
     }
 
     public void deleteMealplan(int mealplan_id) {
